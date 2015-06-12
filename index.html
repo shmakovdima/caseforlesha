@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title></title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<script type="text/javascript" src="js/jquery-2.1.3.min.js"></script>
+<script type="text/javascript" src="js/jquery-ui.min.js"></script>
+<script type="text/javascript" src="js/main.js%3Fv=0.33790000%25201433428035"></script>
+<script type="text/javascript" src="js/perfect-scrollbar.js"></script>
+<script type="text/javascript" src="js/jquery.mousewheel.js"></script>
+<script type="text/javascript" src="js/fabric.js"></script>
+<link rel="stylesheet" type="text/css" href="css/jquery-ui.min.css">
+<link rel="stylesheet" type="text/css" href="css/main.css%3Fv=0.33791200%25201433428035.css">
+<link rel="stylesheet" type="text/css" href="css/perfect-scrollbar.css">
+<style>
+@font-face {
+	font-family: 'Waltograph';
+	src: local("Waltograph"),
+	url(fonts/Waltograph.ttf);
+}
+@font-face {
+	font-family: 'snappy dna';
+	src: local("snappy dna"),
+	url(fonts/snappy_dna.ttf);
+}
+@font-face {
+	font-family: 'SimplyGlamorous';
+	src: local("SimplyGlamorous"),
+	url(fonts/SimplyGlamorous.ttf);
+}
+@font-face {
+	font-family: 'Remachine Script Personal Use';
+	src: local("Remachine Script Personal Use"),
+	url(http://test179.webbby.net/fonts/Remachine_Script_Personal_Use.otf);
+}
+@font-face {
+	font-family: 'Mustang';
+	src: local("Mustang"),
+	url(fonts/Mustang.otf);
+}
+@font-face {
+	font-family: 'LeagueGothic-CondensedRegular';
+	src: local("LeagueGothic-CondensedRegular"),
+	url(fonts/LeagueGothic-CondensedRegular.otf);
+}
+@font-face {
+	font-family: 'Jellyka - Love and Passion';
+	src: local("Jellyka - Love and Passion"),
+	url(fonts/Jellyka_Love_and_Passion.ttf);
+}
+@font-face {
+	font-family: 'Feathergraphy Decoration';
+	src: local("Feathergraphy Decoration"),
+	url(fonts/Feathergraphy_Decoration.ttf);
+}
+@font-face {
+	font-family: 'Bira - PERSONAL USE ONLY';
+	src: local("Bira - PERSONAL USE ONLY"),
+	url(fonts/Bira_PERSONAL_USE_ONLY.ttf);
+}
+@font-face {
+	font-family: 'AngillaTattoo PERSONAL USE ONLY';
+	src: local("AngillaTattoo PERSONAL USE ONLY"),
+	url(fonts/AngillaTattoo_PERSONAL_USE_ONLY.ttf);
+}
+@font-face {
+	font-family: 'AGLettericaExtraCompressed Roman';
+	src: local("AGLettericaExtraCompressed Roman"),
+	url(fonts/AGLettericaExtraCompressed Roman.ttf);
+}
+</style>
+<script>
+	var config = {};
+
+	config.devices_desctop_path = 'img/devices/desctop/';
+	config.http_server = 'http://test179.webbby.net/';
+	config.patterns_path = 'img/patterns/';
+	config.desctop_font_size = '50';
+	config.desctop_bg_path = 'img/backgrounds/';
+	config.desctop_material_path = 'img/materials/desctop/';
+	config.material_mask_path = 'img/materials/mask/';
+
+	config.devices = [{"name":"iPhone 6 Plus","lib_img":"device-1.png","desctop_img":"device-1.png","width":232,"height":472},{"name":"iPhone 6","lib_img":"device-2.png","desctop_img":"device-2.png","width":200,"height":408},{"name":"iPhone 5s","lib_img":"device-3.png","desctop_img":"device-1.png"},{"name":"iPhone 5c","lib_img":"device-4.png","desctop_img":"device-1.png"},{"name":"iPhone 5","lib_img":"device-5.png","desctop_img":"device-1.png"},{"name":"iPhone 4s","lib_img":"device-6.png","desctop_img":"device-1.png"},{"name":"iPhone 4","lib_img":"device-7.png","desctop_img":"device-1.png"},{"name":"Galaxy S5","lib_img":"device-8.png","desctop_img":"device-1.png"},{"name":"Galaxy S4","lib_img":"device-9.png","desctop_img":"device-1.png"},{"name":"Galaxy S4","lib_img":"device-9.png","desctop_img":"device-1.png"},{"name":"Galaxy S4","lib_img":"device-9.png","desctop_img":"device-1.png"},{"name":"Galaxy S4","lib_img":"device-9.png","desctop_img":"device-1.png"}];
+	config.materials = [{"name":"Soft Touch","descr_1":"\u043c\u0430\u0442\u043e\u0432\u044b\u0439 \u0431\u0435\u043b\u044b\u0439","descr_2":"\u0411\u0430\u0440\u0445\u0430\u0442\u0438\u0441\u0442\u044b\u0439, \u043f\u0440\u0438\u044f\u0442\u043d\u044b\u0439 \u043d\u0430 \u043e\u0449\u0443\u043f\u044c \u0447\u0435\u0445\u043e\u043b. \u0410\u043a\u043a\u0443\u0440\u0430\u0442\u043d\u043e! \u0421\u0438\u043b\u044c\u043d\u043e \u043f\u0430\u0447\u043a\u0430\u0435\u0442\u0441\u044f.","lib_img":"material-1.png","desctop_img":"material-1.png","desctop_mask":"material-1.png","width":232,"height":472},{"name":"Soft Touch","descr_1":"\u043c\u0430\u0442\u043e\u0432\u044b\u0439 \u0431\u0435\u043b\u044b\u0439","descr_2":"\u0411\u0430\u0440\u0445\u0430\u0442\u0438\u0441\u0442\u044b\u0439, \u043f\u0440\u0438\u044f\u0442\u043d\u044b\u0439 \u043d\u0430 \u043e\u0449\u0443\u043f\u044c \u0447\u0435\u0445\u043e\u043b. \u0410\u043a\u043a\u0443\u0440\u0430\u0442\u043d\u043e! \u0421\u0438\u043b\u044c\u043d\u043e \u043f\u0430\u0447\u043a\u0430\u0435\u0442\u0441\u044f.","lib_img":"material-1.png"},{"name":"\u0421\u0438\u043b\u0438\u043a\u043e\u043d + \u043f\u043b\u0430\u0441\u0442\u0438\u043a","descr_1":"\u043f\u0440\u043e\u0437\u0440\u0430\u0447\u043d\u044b\u0439","descr_2":"\u0422\u043e\u043d\u043a\u0438\u0439. \u0421\u0438\u043b\u0438\u043a\u043e\u043d\u043e\u0432\u044b\u0435 \u0431\u043e\u043a\u0430 \u043c\u0430\u043a\u0441\u0438\u043c\u0430\u043b\u044c\u043d\u043e \u0437\u0430\u0449\u0438\u0449\u0430\u044e\u0442 \u0442\u0435\u043b\u0435\u0444\u043e\u043d. \u0412\u044b\u0441\u043e\u043a\u043e\u0435 \u043a\u0430\u0447\u0435\u0441\u0442.","lib_img":"material-1.png"}];
+	config.fonts = [{"name":"Waltograph","filename":"Waltograph.ttf"},{"name":"snappy dna","filename":"snappy_dna.ttf"},{"name":"SimplyGlamorous","filename":"SimplyGlamorous.ttf"},{"name":"Remachine Script Personal Use","filename":"Remachine_Script_Personal_Use.otf"},{"name":"Mustang","filename":"Mustang.otf"},{"name":"LeagueGothic-CondensedRegular","filename":"LeagueGothic-CondensedRegular.otf"},{"name":"Jellyka - Love and Passion","filename":"Jellyka_Love_and_Passion.ttf"},{"name":"Feathergraphy Decoration","filename":"Feathergraphy_Decoration.ttf"},{"name":"Bira - PERSONAL USE ONLY","filename":"Bira_PERSONAL_USE_ONLY.ttf"},{"name":"AngillaTattoo PERSONAL USE ONLY","filename":"AngillaTattoo_PERSONAL_USE_ONLY.ttf"},{"name":"AGLettericaExtraCompressed Roman","filename":"AGLettericaExtraCompressed Roman.ttf"}];
+	config.colors = [{"code":"#cccccc"},{"code":"#444444"},{"code":"#cccccc"},{"code":"#cccccc"},{"code":"#cccccc"},{"code":"#cccccc"},{"code":"#cccccc"},{"code":"#cccccc"},{"code":"#cccccc"},{"code":"#cccccc"},{"code":"#cccccc"},{"code":"#cccccc"},{"code":"#cccccc"},{"code":"#cccccc"},{"code":"#cccccc"},{"code":"#cccccc"},{"code":"#cccccc"},{"code":"#cccccc"},{"code":"#cccccc"},{"code":"#cccccc"},{"code":"#cccccc"},{"code":"#cccccc"},{"code":"#cccccc"},{"code":"#cccccc"},{"code":"#cccccc"},{"code":"#cccccc"},{"code":"#cccccc"},{"code":"#cccccc"},{"code":"#cccccc"},{"code":"#cccccc"},{"code":"#cccccc"},{"code":"#cccccc"},{"code":"#cccccc"},{"code":"#cccccc"},{"code":"#cccccc"},{"code":"#cccccc"},{"code":"#cccccc"},{"code":"#cccccc"},{"code":"#cccccc"},{"code":"#cccccc"},{"code":"#cccccc"},{"code":"#cccccc"},{"code":"#cccccc"},{"code":"#cccccc"},{"code":"#cccccc"},{"code":"#cccccc"},{"code":"#cccccc"},{"code":"#cccccc"},{"code":"#cccccc"},{"code":"#cccccc"},{"code":"#cccccc"}];
+	config.patterns = [{"filename":"file1.jpg"},{"filename":"file1.jpg"},{"filename":"file1.jpg"},{"filename":"file1.jpg"},{"filename":"file1.jpg"},{"filename":"file1.jpg"},{"filename":"file1.jpg"},{"filename":"file1.jpg"},{"filename":"file1.jpg"},{"filename":"file1.jpg"},{"filename":"file1.jpg"},{"filename":"file1.jpg"},{"filename":"file1.jpg"},{"filename":"file1.jpg"},{"filename":"file1.jpg"},{"filename":"file1.jpg"},{"filename":"file1.jpg"},{"filename":"file1.jpg"},{"filename":"file1.jpg"},{"filename":"file1.jpg"},{"filename":"file1.jpg"},{"filename":"file1.jpg"},{"filename":"file1.jpg"},{"filename":"file1.jpg"},{"filename":"file1.jpg"},{"filename":"file1.jpg"},{"filename":"file1.jpg"},{"filename":"file1.jpg"},{"filename":"file1.jpg"},{"filename":"file1.jpg"},{"filename":"file1.jpg"},{"filename":"file1.jpg"},{"filename":"file1.jpg"},{"filename":"file1.jpg"},{"filename":"file1.jpg"},{"filename":"file1.jpg"},{"filename":"file1.jpg"},{"filename":"file1.jpg"},{"filename":"file1.jpg"},{"filename":"file1.jpg"},{"filename":"file1.jpg"},{"filename":"file1.jpg"},{"filename":"file1.jpg"},{"filename":"file1.jpg"},{"filename":"file1.jpg"},{"filename":"file1.jpg"},{"filename":"file1.jpg"},{"filename":"file1.jpg"},{"filename":"file1.jpg"},{"filename":"file1.jpg"},{"filename":"file1.jpg"}];
+	config.backgrounds = [{"filename":"bg1.jpg"},{"filename":"bg1.jpg"},{"filename":"bg1.jpg"},{"filename":"bg1.jpg"},{"filename":"bg1.jpg"},{"filename":"bg1.jpg"},{"filename":"bg1.jpg"},{"filename":"bg1.jpg"},{"filename":"bg1.jpg"},{"filename":"bg1.jpg"},{"filename":"bg1.jpg"},{"filename":"bg1.jpg"},{"filename":"bg1.jpg"},{"filename":"bg1.jpg"},{"filename":"bg1.jpg"},{"filename":"bg1.jpg"},{"filename":"bg1.jpg"},{"filename":"bg1.jpg"},{"filename":"bg1.jpg"},{"filename":"bg1.jpg"},{"filename":"bg1.jpg"},{"filename":"bg1.jpg"},{"filename":"bg1.jpg"},{"filename":"bg1.jpg"},{"filename":"bg1.jpg"},{"filename":"bg1.jpg"},{"filename":"bg1.jpg"},{"filename":"bg1.jpg"},{"filename":"bg1.jpg"},{"filename":"bg1.jpg"},{"filename":"bg1.jpg"},{"filename":"bg1.jpg"},{"filename":"bg1.jpg"},{"filename":"bg1.jpg"},{"filename":"bg1.jpg"},{"filename":"bg1.jpg"},{"filename":"bg1.jpg"},{"filename":"bg1.jpg"},{"filename":"bg1.jpg"},{"filename":"bg1.jpg"},{"filename":"bg1.jpg"},{"filename":"bg1.jpg"},{"filename":"bg1.jpg"},{"filename":"bg1.jpg"},{"filename":"bg1.jpg"},{"filename":"bg1.jpg"},{"filename":"bg1.jpg"},{"filename":"bg1.jpg"},{"filename":"bg1.jpg"},{"filename":"bg1.jpg"},{"filename":"bg1.jpg"}];
+	var desctop = {
+		device_id: 0,
+		material_id: 0,
+		font_id: 0,
+		text: 'Ваш текст',
+		font_color_id: 0,
+		font_pattern_id: 0,
+	};
+</script>
+</head>
+
+<body>
+
+<div id="header">
+	<ul id="header-menu">
+		<li id="header-logo">
+			<a href="index.html"></a>
+		</li>
+		<li data-menu-id="1" id="header-menu-item-1" class="header-menu-selected">
+			<span>ДЕВАЙС</span>
+		</li>
+		<li data-menu-id="2" id="header-menu-item-2">
+			<span>ЧЕХОЛ</span>
+		</li>
+		<li data-menu-id="3" id="header-menu-item-3">
+			<span>ТЕКСТ</span>
+		</li>
+		<li data-menu-id="4" id="header-menu-item-4">
+			<span>ЦВЕТ</span>
+		</li>
+		<li data-menu-id="5" id="header-menu-item-5">
+			<span>ФОН</span>
+		</li>
+		<li data-menu-id="6" id="header-menu-item-6">
+			<span>СМАЙЛЫ</span>
+		</li>
+	</ul>
+</div>
+<div id="main">
+	<div id="left">
+		<div id="phone">+7 (903) 790-58-10</div>
+		<div id="left_menu">
+			<div id="cart">6 ТОВАРОВ</div>
+			<div id="price">
+				<div id="phone_model">iPhone 6</div>
+				<div id="price_total">1500 Р</div>
+				<div id="price-point"></div>
+			</div>
+			<div id="left_menu-shipping">О ДОСТАВКЕ</div>
+			<div id="left_menu-help" class="left_menu-selected">НУЖНА ПОМОЩЬ</div>
+		</div>
+	</div>
+	<div id="center">
+		<div id="center_in">
+			<canvas id="device"></canvas>
+			<div class="device_colors" id="device_colors-1">
+				<div class="device_colors-selected"></div>
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+			</div>
+			<div class="device_colors" id="device_colors-2" style="display: none;">
+				<div class="device_colors-selected"></div>
+				<div></div>
+				<div></div>
+			</div>
+			<div class="info_block" id="info_block-1">
+				<div class="icon-question" data-answer-id="1"></div>
+				<div class="icon-close"></div>
+				<div class="answer_block" id="answer_block-1">
+					<div class="info_block-row">
+						<div class="info_block-point"></div>
+						Нажмите в правом боковом меню на устройство, для которого хотите создать чехол.
+						<br><br>
+						<span class="font-blue">Если Вашего устройства нет в списке, а Вы очень хотите заказать чехол, напишите нам.</span>
+					</div>
+					<div class="info_block-row">
+						<p class="info_block-1-2-1">2 клика по области, чтобы изменить текст<br><br> или нажмите здесь
+						<span id="change_color_but">ИЗМЕНИТЬ ЦВЕТ</span>
+						</p>
+						<p class="info_block-1-2-2">1 клик - работать с объектом</p>
+						<p class="info_block-1-2-3">крутите и вертите</p>
+						<p class="info_block-1-2-4">потяните за угол, чтобы растянуть</p>
+						<p class="info_block-1-2-5">перемещение по чехлу</p>
+					</div>
+				</div>
+			</div>
+			<div class="info_block" id="info_block-2" style="display: none;">
+				<div class="icon-question" data-answer-id="2"></div>
+				<div class="icon-close"></div>
+				<div class="answer_block" id="answer_block-2">
+					<div class="info_block-row">
+						<div class="info_block-point"></div>
+						Справа в меню отображаются доступные для заказа чехлы.<br><br>
+						Чтобы выбрать чехол, просто кликните на необходимый Вам.<br><br>
+						<span class="font-blue">Для прозрачных чехлов очень важно выбрать цвет самого телефона, чтобы не ошибиться с макетом.</span>
+					</div>
+				</div>
+			</div>
+			<div class="info_block" id="info_block-3" style="display: none;">
+				<div class="icon-question" data-answer-id="3"></div>
+				<div class="answer_block" id="answer_block-3">
+					<div class="info_block-row">
+						<div class="info_block-point"></div>
+						Вы можете написать любой текст как вдоль, так и поперек чехла.<br><br>
+						Впишите свое слово, оно отобразится справа во всех доступных шрифтах.<br><br>
+						<span class="font-red">Старайтесь не попадать на края области чехла, возможен брак.</span>
+					</div>
+					<div class="info_block-row">
+						<p class="info_block-1-2-1">2 клика по области, чтобы изменить текст<br><br> или нажмите здесь
+						<span id="change_color_but">ИЗМЕНИТЬ ЦВЕТ</span>
+						</p>
+						<p class="info_block-1-2-2">1 клик - работать с объектом</p>
+						<p class="info_block-1-2-3">крутите и вертите</p>
+						<p class="info_block-1-2-4">потяните за угол, чтобы растянуть</p>
+						<p class="info_block-1-2-5">перемещение по чехлу</p>
+					</div>
+				</div>
+			</div>
+			<div class="info_block" id="info_block-4">
+				<div class="icon-question" data-answer-id="4"></div>
+				<div class="answer_block" id="answer_block-4">
+					<div class="info_block-row">
+						<div class="info_block-point"></div>
+						Подберите цвет надписи, исходя из выбранного цвета чехла.
+						<br><br>
+						Вы также можете выбрать паттерн, который заполнит текст узором.
+						<br><br>
+						<span class="font-blue">Подвигайте надпись после добавления паттерна, для выбора лучшего отображения узора в надписи.</span>
+					</div>
+					<div class="info_block-row">
+						<p class="info_block-1-2-1">2 клика по области, чтобы изменить текст<br><br> или нажмите здесь
+						<span id="change_color_but">ИЗМЕНИТЬ ЦВЕТ</span>
+						</p>
+						<p class="info_block-1-2-2">1 клик - работать с объектом</p>
+						<p class="info_block-1-2-3">крутите и вертите</p>
+						<p class="info_block-1-2-4">потяните за угол, чтобы растянуть</p>
+						<p class="info_block-1-2-5">перемещение по чехлу</p>
+					</div>
+				</div>
+			</div>
+			<div class="info_block" id="info_block-5">
+				<div class="icon-question" data-answer-id="5"></div>
+				<div class="icon-close"></div>
+				<div class="answer_block" id="answer_block-5">
+					<div class="info_block-row">
+						<div class="info_block-point"></div>
+						Подберите фон чехла на свой вкус.
+						<br><br>
+						<span class="font-blue">Чтобы удалить фон, нажмите на появившийся крестик справа от чехла.</span>
+					</div>
+					<div class="info_block-row">
+						<p class="info_block-1-2-1">2 клика по области, чтобы изменить текст<br><br> или нажмите здесь
+						<span id="change_color_but">ИЗМЕНИТЬ ЦВЕТ</span>
+						</p>
+						<p class="info_block-1-2-2">1 клик - работать с объектом</p>
+						<p class="info_block-1-2-3">крутите и вертите</p>
+						<p class="info_block-1-2-4">потяните за угол, чтобы растянуть</p>
+						<p class="info_block-1-2-5">перемещение по чехлу</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="right">
+		<div id="right-1" class="right_content_block">
+			<div class="right_menu_title">Выберите устройство</div>
+			<div class="library">
+				<div class="library_in">
+											<div class="library-device_row library-device_row-selected" id="library-device_row-0" data-device-id="0">
+							iPhone 6 Plus							<div style="background: url('img/devices/library/device-1.png') bottom center no-repeat;"></div>
+						</div>
+						<img src="img/devices/desctop/device-1.png" id="devices_desctop_img-0" style="display: none;">
+											<div class="library-device_row" id="library-device_row-1" data-device-id="1">
+							iPhone 6							<div style="background: url('img/devices/library/device-2.png') bottom center no-repeat;"></div>
+						</div>
+						<img src="img/devices/desctop/device-2.png" id="devices_desctop_img-1" style="display: none;">
+											<div class="library-device_row" id="library-device_row-2" data-device-id="2">
+							iPhone 5s							<div style="background: url('img/devices/library/device-3.png') bottom center no-repeat;"></div>
+						</div>
+						<img src="img/devices/desctop/device-1.png" id="devices_desctop_img-2" style="display: none;">
+											<div class="library-device_row" id="library-device_row-3" data-device-id="3">
+							iPhone 5c							<div style="background: url('img/devices/library/device-4.png') bottom center no-repeat;"></div>
+						</div>
+						<img src="img/devices/desctop/device-1.png" id="devices_desctop_img-3" style="display: none;">
+											<div class="library-device_row" id="library-device_row-4" data-device-id="4">
+							iPhone 5							<div style="background: url('img/devices/library/device-5.png') bottom center no-repeat;"></div>
+						</div>
+						<img src="img/devices/desctop/device-1.png" id="devices_desctop_img-4" style="display: none;">
+											<div class="library-device_row" id="library-device_row-5" data-device-id="5">
+							iPhone 4s							<div style="background: url('img/devices/library/device-6.png') bottom center no-repeat;"></div>
+						</div>
+						<img src="img/devices/desctop/device-1.png" id="devices_desctop_img-5" style="display: none;">
+											<div class="library-device_row" id="library-device_row-6" data-device-id="6">
+							iPhone 4							<div style="background: url('img/devices/library/device-7.png') bottom center no-repeat;"></div>
+						</div>
+						<img src="img/devices/desctop/device-1.png" id="devices_desctop_img-6" style="display: none;">
+											<div class="library-device_row" id="library-device_row-7" data-device-id="7">
+							Galaxy S5							<div style="background: url('img/devices/library/device-8.png') bottom center no-repeat;"></div>
+						</div>
+						<img src="img/devices/desctop/device-1.png" id="devices_desctop_img-7" style="display: none;">
+											<div class="library-device_row" id="library-device_row-8" data-device-id="8">
+							Galaxy S4							<div style="background: url('img/devices/library/device-9.png') bottom center no-repeat;"></div>
+						</div>
+						<img src="img/devices/desctop/device-1.png" id="devices_desctop_img-8" style="display: none;">
+											<div class="library-device_row" id="library-device_row-9" data-device-id="9">
+							Galaxy S4							<div style="background: url('img/devices/library/device-9.png') bottom center no-repeat;"></div>
+						</div>
+						<img src="img/devices/desctop/device-1.png" id="devices_desctop_img-9" style="display: none;">
+											<div class="library-device_row" id="library-device_row-10" data-device-id="10">
+							Galaxy S4							<div style="background: url('img/devices/library/device-9.png') bottom center no-repeat;"></div>
+						</div>
+						<img src="img/devices/desctop/device-1.png" id="devices_desctop_img-10" style="display: none;">
+											<div class="library-device_row" id="library-device_row-11" data-device-id="11">
+							Galaxy S4							<div style="background: url('img/devices/library/device-9.png') bottom center no-repeat;"></div>
+						</div>
+						<img src="img/devices/desctop/device-1.png" id="devices_desctop_img-11" style="display: none;">
+									</div>
+			</div>
+		</div>
+		<div id="right-2" class="right_content_block" style="display: none;">
+			<div class="right_menu_title">Выберите чехол</div>
+			<div class="library_2">
+				<div class="library_in">
+											<div class="library-case_row library-case_row-selected" id="library-case_row-0" data-material-id="0" style="background-image: url('img/materials/library/material-1.png');">
+							<div class="library-case_row-block-1">Soft Touch</div>
+							<div class="library-case_row-block-2">матовый белый</div>
+							<div class="library-case_row-block-3">Бархатистый, приятный на ощупь чехол. Аккуратно! Сильно пачкается.</div>
+						</div>
+											<div class="library-case_row" id="library-case_row-1" data-material-id="1" style="background-image: url('img/materials/library/material-1.png');">
+							<div class="library-case_row-block-1">Soft Touch</div>
+							<div class="library-case_row-block-2">матовый белый</div>
+							<div class="library-case_row-block-3">Бархатистый, приятный на ощупь чехол. Аккуратно! Сильно пачкается.</div>
+						</div>
+											<div class="library-case_row" id="library-case_row-2" data-material-id="2" style="background-image: url('img/materials/library/material-1.png');">
+							<div class="library-case_row-block-1">Силикон + пластик</div>
+							<div class="library-case_row-block-2">прозрачный</div>
+							<div class="library-case_row-block-3">Тонкий. Силиконовые бока максимально защищают телефон. Высокое качест.</div>
+						</div>
+									</div>
+			</div>
+		</div>
+		<div id="right-3" class="right_content_block" style="display: none;">
+			<div class="right_menu_title">Выберите шрифт</div>
+			<div class="library_2">
+				<div class="library_in">
+									<div class="library-font_row library-font_row-selected" style="font-family: 'Waltograph';" data-font-id="0" id="library-font_row-0">
+						Waltograph					</div>
+									<div class="library-font_row" style="font-family: 'snappy dna';" data-font-id="1" id="library-font_row-1">
+						snappy dna					</div>
+									<div class="library-font_row" style="font-family: 'SimplyGlamorous';" data-font-id="2" id="library-font_row-2">
+						SimplyGlamorous					</div>
+									<div class="library-font_row" style="font-family: 'Remachine Script Personal Use';" data-font-id="3" id="library-font_row-3">
+						Remachine Script Personal Use					</div>
+									<div class="library-font_row" style="font-family: 'Mustang';" data-font-id="4" id="library-font_row-4">
+						Mustang					</div>
+									<div class="library-font_row" style="font-family: 'LeagueGothic-CondensedRegular';" data-font-id="5" id="library-font_row-5">
+						LeagueGothic-CondensedRegular					</div>
+									<div class="library-font_row" style="font-family: 'Jellyka - Love and Passion';" data-font-id="6" id="library-font_row-6">
+						Jellyka - Love and Passion					</div>
+									<div class="library-font_row" style="font-family: 'Feathergraphy Decoration';" data-font-id="7" id="library-font_row-7">
+						Feathergraphy Decoration					</div>
+									<div class="library-font_row" style="font-family: 'Bira - PERSONAL USE ONLY';" data-font-id="8" id="library-font_row-8">
+						Bira - PERSONAL USE ONLY					</div>
+									<div class="library-font_row" style="font-family: 'AngillaTattoo PERSONAL USE ONLY';" data-font-id="9" id="library-font_row-9">
+						AngillaTattoo PERSONAL USE ONLY					</div>
+									<div class="library-font_row" style="font-family: 'AGLettericaExtraCompressed Roman';" data-font-id="10" id="library-font_row-10">
+						AGLettericaExtraCompressed Roman					</div>
+								</div>
+			</div>
+		</div>
+		<div id="right-4" class="right_content_block" style="display: none;">
+			<div class="right_menu_title">Выберите цвет</div>
+			<div class="library_3">
+				<div class="library_in">
+									<div class="library-color_row library-color_row-first" style="background: #cccccc;" id="library-color_row-0" data-font-color-id="0"></div>
+									<div class="library-color_row" style="background: #444444;" id="library-color_row-1" data-font-color-id="1"></div>
+									<div class="library-color_row" style="background: #cccccc;" id="library-color_row-2" data-font-color-id="2"></div>
+									<div class="library-color_row" style="background: #cccccc;" id="library-color_row-3" data-font-color-id="3"></div>
+									<div class="library-color_row" style="background: #cccccc;" id="library-color_row-4" data-font-color-id="4"></div>
+									<div class="library-color_row" style="background: #cccccc;" id="library-color_row-5" data-font-color-id="5"></div>
+									<div class="library-color_row" style="background: #cccccc;" id="library-color_row-6" data-font-color-id="6"></div>
+									<div class="library-color_row" style="background: #cccccc;" id="library-color_row-7" data-font-color-id="7"></div>
+									<div class="library-color_row" style="background: #cccccc;" id="library-color_row-8" data-font-color-id="8"></div>
+									<div class="library-color_row library-color_row-last" style="background: #cccccc;" id="library-color_row-9" data-font-color-id="9"></div>
+									<div class="library-color_row library-color_row-first" style="background: #cccccc;" id="library-color_row-10" data-font-color-id="10"></div>
+									<div class="library-color_row" style="background: #cccccc;" id="library-color_row-11" data-font-color-id="11"></div>
+									<div class="library-color_row" style="background: #cccccc;" id="library-color_row-12" data-font-color-id="12"></div>
+									<div class="library-color_row" style="background: #cccccc;" id="library-color_row-13" data-font-color-id="13"></div>
+									<div class="library-color_row" style="background: #cccccc;" id="library-color_row-14" data-font-color-id="14"></div>
+									<div class="library-color_row" style="background: #cccccc;" id="library-color_row-15" data-font-color-id="15"></div>
+									<div class="library-color_row" style="background: #cccccc;" id="library-color_row-16" data-font-color-id="16"></div>
+									<div class="library-color_row" style="background: #cccccc;" id="library-color_row-17" data-font-color-id="17"></div>
+									<div class="library-color_row" style="background: #cccccc;" id="library-color_row-18" data-font-color-id="18"></div>
+									<div class="library-color_row library-color_row-last" style="background: #cccccc;" id="library-color_row-19" data-font-color-id="19"></div>
+									<div class="library-color_row library-color_row-first" style="background: #cccccc;" id="library-color_row-20" data-font-color-id="20"></div>
+									<div class="library-color_row" style="background: #cccccc;" id="library-color_row-21" data-font-color-id="21"></div>
+									<div class="library-color_row" style="background: #cccccc;" id="library-color_row-22" data-font-color-id="22"></div>
+									<div class="library-color_row" style="background: #cccccc;" id="library-color_row-23" data-font-color-id="23"></div>
+									<div class="library-color_row" style="background: #cccccc;" id="library-color_row-24" data-font-color-id="24"></div>
+									<div class="library-color_row" style="background: #cccccc;" id="library-color_row-25" data-font-color-id="25"></div>
+									<div class="library-color_row" style="background: #cccccc;" id="library-color_row-26" data-font-color-id="26"></div>
+									<div class="library-color_row" style="background: #cccccc;" id="library-color_row-27" data-font-color-id="27"></div>
+									<div class="library-color_row" style="background: #cccccc;" id="library-color_row-28" data-font-color-id="28"></div>
+									<div class="library-color_row library-color_row-last" style="background: #cccccc;" id="library-color_row-29" data-font-color-id="29"></div>
+									<div class="library-color_row library-color_row-first" style="background: #cccccc;" id="library-color_row-30" data-font-color-id="30"></div>
+									<div class="library-color_row" style="background: #cccccc;" id="library-color_row-31" data-font-color-id="31"></div>
+									<div class="library-color_row" style="background: #cccccc;" id="library-color_row-32" data-font-color-id="32"></div>
+									<div class="library-color_row" style="background: #cccccc;" id="library-color_row-33" data-font-color-id="33"></div>
+									<div class="library-color_row" style="background: #cccccc;" id="library-color_row-34" data-font-color-id="34"></div>
+									<div class="library-color_row" style="background: #cccccc;" id="library-color_row-35" data-font-color-id="35"></div>
+									<div class="library-color_row" style="background: #cccccc;" id="library-color_row-36" data-font-color-id="36"></div>
+									<div class="library-color_row" style="background: #cccccc;" id="library-color_row-37" data-font-color-id="37"></div>
+									<div class="library-color_row" style="background: #cccccc;" id="library-color_row-38" data-font-color-id="38"></div>
+									<div class="library-color_row library-color_row-last" style="background: #cccccc;" id="library-color_row-39" data-font-color-id="39"></div>
+									<div class="library-color_row library-color_row-first" style="background: #cccccc;" id="library-color_row-40" data-font-color-id="40"></div>
+									<div class="library-color_row" style="background: #cccccc;" id="library-color_row-41" data-font-color-id="41"></div>
+									<div class="library-color_row" style="background: #cccccc;" id="library-color_row-42" data-font-color-id="42"></div>
+									<div class="library-color_row" style="background: #cccccc;" id="library-color_row-43" data-font-color-id="43"></div>
+									<div class="library-color_row" style="background: #cccccc;" id="library-color_row-44" data-font-color-id="44"></div>
+									<div class="library-color_row" style="background: #cccccc;" id="library-color_row-45" data-font-color-id="45"></div>
+									<div class="library-color_row" style="background: #cccccc;" id="library-color_row-46" data-font-color-id="46"></div>
+									<div class="library-color_row" style="background: #cccccc;" id="library-color_row-47" data-font-color-id="47"></div>
+									<div class="library-color_row" style="background: #cccccc;" id="library-color_row-48" data-font-color-id="48"></div>
+									<div class="library-color_row library-color_row-last" style="background: #cccccc;" id="library-color_row-49" data-font-color-id="49"></div>
+									<div class="library-color_row library-color_row-first" style="background: #cccccc;" id="library-color_row-50" data-font-color-id="50"></div>
+								</div>
+			</div>
+			<div class="right_menu_title_2">или<br>Выберите паттерн</div>
+			<div class="library_4">
+				<div class="library_in">
+									<div class="library-pattern_row library-pattern_row-first" style="background: url(img/patterns/file1.jpg);" data-font-pattern-id="0" id="library-pattern_row-0"></div>
+									<div class="library-pattern_row" style="background: url(img/patterns/file1.jpg);" data-font-pattern-id="1" id="library-pattern_row-1"></div>
+									<div class="library-pattern_row" style="background: url(img/patterns/file1.jpg);" data-font-pattern-id="2" id="library-pattern_row-2"></div>
+									<div class="library-pattern_row" style="background: url(img/patterns/file1.jpg);" data-font-pattern-id="3" id="library-pattern_row-3"></div>
+									<div class="library-pattern_row library-pattern_row-last" style="background: url(img/patterns/file1.jpg);" data-font-pattern-id="4" id="library-pattern_row-4"></div>
+									<div class="library-pattern_row library-pattern_row-first" style="background: url(img/patterns/file1.jpg);" data-font-pattern-id="5" id="library-pattern_row-5"></div>
+									<div class="library-pattern_row" style="background: url(img/patterns/file1.jpg);" data-font-pattern-id="6" id="library-pattern_row-6"></div>
+									<div class="library-pattern_row" style="background: url(img/patterns/file1.jpg);" data-font-pattern-id="7" id="library-pattern_row-7"></div>
+									<div class="library-pattern_row" style="background: url(img/patterns/file1.jpg);" data-font-pattern-id="8" id="library-pattern_row-8"></div>
+									<div class="library-pattern_row library-pattern_row-last" style="background: url(img/patterns/file1.jpg);" data-font-pattern-id="9" id="library-pattern_row-9"></div>
+									<div class="library-pattern_row library-pattern_row-first" style="background: url(img/patterns/file1.jpg);" data-font-pattern-id="10" id="library-pattern_row-10"></div>
+									<div class="library-pattern_row" style="background: url(img/patterns/file1.jpg);" data-font-pattern-id="11" id="library-pattern_row-11"></div>
+									<div class="library-pattern_row" style="background: url(img/patterns/file1.jpg);" data-font-pattern-id="12" id="library-pattern_row-12"></div>
+									<div class="library-pattern_row" style="background: url(img/patterns/file1.jpg);" data-font-pattern-id="13" id="library-pattern_row-13"></div>
+									<div class="library-pattern_row library-pattern_row-last" style="background: url(img/patterns/file1.jpg);" data-font-pattern-id="14" id="library-pattern_row-14"></div>
+									<div class="library-pattern_row library-pattern_row-first" style="background: url(img/patterns/file1.jpg);" data-font-pattern-id="15" id="library-pattern_row-15"></div>
+									<div class="library-pattern_row" style="background: url(img/patterns/file1.jpg);" data-font-pattern-id="16" id="library-pattern_row-16"></div>
+									<div class="library-pattern_row" style="background: url(img/patterns/file1.jpg);" data-font-pattern-id="17" id="library-pattern_row-17"></div>
+									<div class="library-pattern_row" style="background: url(img/patterns/file1.jpg);" data-font-pattern-id="18" id="library-pattern_row-18"></div>
+									<div class="library-pattern_row library-pattern_row-last" style="background: url(img/patterns/file1.jpg);" data-font-pattern-id="19" id="library-pattern_row-19"></div>
+									<div class="library-pattern_row library-pattern_row-first" style="background: url(img/patterns/file1.jpg);" data-font-pattern-id="20" id="library-pattern_row-20"></div>
+									<div class="library-pattern_row" style="background: url(img/patterns/file1.jpg);" data-font-pattern-id="21" id="library-pattern_row-21"></div>
+									<div class="library-pattern_row" style="background: url(img/patterns/file1.jpg);" data-font-pattern-id="22" id="library-pattern_row-22"></div>
+									<div class="library-pattern_row" style="background: url(img/patterns/file1.jpg);" data-font-pattern-id="23" id="library-pattern_row-23"></div>
+									<div class="library-pattern_row library-pattern_row-last" style="background: url(img/patterns/file1.jpg);" data-font-pattern-id="24" id="library-pattern_row-24"></div>
+									<div class="library-pattern_row library-pattern_row-first" style="background: url(img/patterns/file1.jpg);" data-font-pattern-id="25" id="library-pattern_row-25"></div>
+									<div class="library-pattern_row" style="background: url(img/patterns/file1.jpg);" data-font-pattern-id="26" id="library-pattern_row-26"></div>
+									<div class="library-pattern_row" style="background: url(img/patterns/file1.jpg);" data-font-pattern-id="27" id="library-pattern_row-27"></div>
+									<div class="library-pattern_row" style="background: url(img/patterns/file1.jpg);" data-font-pattern-id="28" id="library-pattern_row-28"></div>
+									<div class="library-pattern_row library-pattern_row-last" style="background: url(img/patterns/file1.jpg);" data-font-pattern-id="29" id="library-pattern_row-29"></div>
+									<div class="library-pattern_row library-pattern_row-first" style="background: url(img/patterns/file1.jpg);" data-font-pattern-id="30" id="library-pattern_row-30"></div>
+									<div class="library-pattern_row" style="background: url(img/patterns/file1.jpg);" data-font-pattern-id="31" id="library-pattern_row-31"></div>
+									<div class="library-pattern_row" style="background: url(img/patterns/file1.jpg);" data-font-pattern-id="32" id="library-pattern_row-32"></div>
+									<div class="library-pattern_row" style="background: url(img/patterns/file1.jpg);" data-font-pattern-id="33" id="library-pattern_row-33"></div>
+									<div class="library-pattern_row library-pattern_row-last" style="background: url(img/patterns/file1.jpg);" data-font-pattern-id="34" id="library-pattern_row-34"></div>
+									<div class="library-pattern_row library-pattern_row-first" style="background: url(img/patterns/file1.jpg);" data-font-pattern-id="35" id="library-pattern_row-35"></div>
+									<div class="library-pattern_row" style="background: url(img/patterns/file1.jpg);" data-font-pattern-id="36" id="library-pattern_row-36"></div>
+									<div class="library-pattern_row" style="background: url(img/patterns/file1.jpg);" data-font-pattern-id="37" id="library-pattern_row-37"></div>
+									<div class="library-pattern_row" style="background: url(img/patterns/file1.jpg);" data-font-pattern-id="38" id="library-pattern_row-38"></div>
+									<div class="library-pattern_row library-pattern_row-last" style="background: url(img/patterns/file1.jpg);" data-font-pattern-id="39" id="library-pattern_row-39"></div>
+									<div class="library-pattern_row library-pattern_row-first" style="background: url(img/patterns/file1.jpg);" data-font-pattern-id="40" id="library-pattern_row-40"></div>
+									<div class="library-pattern_row" style="background: url(img/patterns/file1.jpg);" data-font-pattern-id="41" id="library-pattern_row-41"></div>
+									<div class="library-pattern_row" style="background: url(img/patterns/file1.jpg);" data-font-pattern-id="42" id="library-pattern_row-42"></div>
+									<div class="library-pattern_row" style="background: url(img/patterns/file1.jpg);" data-font-pattern-id="43" id="library-pattern_row-43"></div>
+									<div class="library-pattern_row library-pattern_row-last" style="background: url(img/patterns/file1.jpg);" data-font-pattern-id="44" id="library-pattern_row-44"></div>
+									<div class="library-pattern_row library-pattern_row-first" style="background: url(img/patterns/file1.jpg);" data-font-pattern-id="45" id="library-pattern_row-45"></div>
+									<div class="library-pattern_row" style="background: url(img/patterns/file1.jpg);" data-font-pattern-id="46" id="library-pattern_row-46"></div>
+									<div class="library-pattern_row" style="background: url(img/patterns/file1.jpg);" data-font-pattern-id="47" id="library-pattern_row-47"></div>
+									<div class="library-pattern_row" style="background: url(img/patterns/file1.jpg);" data-font-pattern-id="48" id="library-pattern_row-48"></div>
+									<div class="library-pattern_row library-pattern_row-last" style="background: url(img/patterns/file1.jpg);" data-font-pattern-id="49" id="library-pattern_row-49"></div>
+									<div class="library-pattern_row library-pattern_row-first" style="background: url(img/patterns/file1.jpg);" data-font-pattern-id="50" id="library-pattern_row-50"></div>
+								</div>
+			</div>
+		</div>
+		<div id="right-5" class="right_content_block" style="display: none;">
+			<div class="right_menu_title">Выберите фон</div>
+			<div class="library_5">
+				<div class="library_in">
+									<div class="library-background_row library-background_row-first" style="background-image: url(img/backgrounds/bg1.jpg);" id="library-background_row-0" data-bg-id="0"></div>
+									<div class="library-background_row" style="background-image: url(img/backgrounds/bg1.jpg);" id="library-background_row-1" data-bg-id="1"></div>
+									<div class="library-background_row" style="background-image: url(img/backgrounds/bg1.jpg);" id="library-background_row-2" data-bg-id="2"></div>
+									<div class="library-background_row library-background_row-last" style="background-image: url(img/backgrounds/bg1.jpg);" id="library-background_row-3" data-bg-id="3"></div>
+									<div class="library-background_row library-background_row-first" style="background-image: url(img/backgrounds/bg1.jpg);" id="library-background_row-4" data-bg-id="4"></div>
+									<div class="library-background_row" style="background-image: url(img/backgrounds/bg1.jpg);" id="library-background_row-5" data-bg-id="5"></div>
+									<div class="library-background_row" style="background-image: url(img/backgrounds/bg1.jpg);" id="library-background_row-6" data-bg-id="6"></div>
+									<div class="library-background_row library-background_row-last" style="background-image: url(img/backgrounds/bg1.jpg);" id="library-background_row-7" data-bg-id="7"></div>
+									<div class="library-background_row library-background_row-first" style="background-image: url(img/backgrounds/bg1.jpg);" id="library-background_row-8" data-bg-id="8"></div>
+									<div class="library-background_row" style="background-image: url(img/backgrounds/bg1.jpg);" id="library-background_row-9" data-bg-id="9"></div>
+									<div class="library-background_row" style="background-image: url(img/backgrounds/bg1.jpg);" id="library-background_row-10" data-bg-id="10"></div>
+									<div class="library-background_row library-background_row-last" style="background-image: url(img/backgrounds/bg1.jpg);" id="library-background_row-11" data-bg-id="11"></div>
+									<div class="library-background_row library-background_row-first" style="background-image: url(img/backgrounds/bg1.jpg);" id="library-background_row-12" data-bg-id="12"></div>
+									<div class="library-background_row" style="background-image: url(img/backgrounds/bg1.jpg);" id="library-background_row-13" data-bg-id="13"></div>
+									<div class="library-background_row" style="background-image: url(img/backgrounds/bg1.jpg);" id="library-background_row-14" data-bg-id="14"></div>
+									<div class="library-background_row library-background_row-last" style="background-image: url(img/backgrounds/bg1.jpg);" id="library-background_row-15" data-bg-id="15"></div>
+									<div class="library-background_row library-background_row-first" style="background-image: url(img/backgrounds/bg1.jpg);" id="library-background_row-16" data-bg-id="16"></div>
+									<div class="library-background_row" style="background-image: url(img/backgrounds/bg1.jpg);" id="library-background_row-17" data-bg-id="17"></div>
+									<div class="library-background_row" style="background-image: url(img/backgrounds/bg1.jpg);" id="library-background_row-18" data-bg-id="18"></div>
+									<div class="library-background_row library-background_row-last" style="background-image: url(img/backgrounds/bg1.jpg);" id="library-background_row-19" data-bg-id="19"></div>
+									<div class="library-background_row library-background_row-first" style="background-image: url(img/backgrounds/bg1.jpg);" id="library-background_row-20" data-bg-id="20"></div>
+									<div class="library-background_row" style="background-image: url(img/backgrounds/bg1.jpg);" id="library-background_row-21" data-bg-id="21"></div>
+									<div class="library-background_row" style="background-image: url(img/backgrounds/bg1.jpg);" id="library-background_row-22" data-bg-id="22"></div>
+									<div class="library-background_row library-background_row-last" style="background-image: url(img/backgrounds/bg1.jpg);" id="library-background_row-23" data-bg-id="23"></div>
+									<div class="library-background_row library-background_row-first" style="background-image: url(img/backgrounds/bg1.jpg);" id="library-background_row-24" data-bg-id="24"></div>
+									<div class="library-background_row" style="background-image: url(img/backgrounds/bg1.jpg);" id="library-background_row-25" data-bg-id="25"></div>
+									<div class="library-background_row" style="background-image: url(img/backgrounds/bg1.jpg);" id="library-background_row-26" data-bg-id="26"></div>
+									<div class="library-background_row library-background_row-last" style="background-image: url(img/backgrounds/bg1.jpg);" id="library-background_row-27" data-bg-id="27"></div>
+									<div class="library-background_row library-background_row-first" style="background-image: url(img/backgrounds/bg1.jpg);" id="library-background_row-28" data-bg-id="28"></div>
+									<div class="library-background_row" style="background-image: url(img/backgrounds/bg1.jpg);" id="library-background_row-29" data-bg-id="29"></div>
+									<div class="library-background_row" style="background-image: url(img/backgrounds/bg1.jpg);" id="library-background_row-30" data-bg-id="30"></div>
+									<div class="library-background_row library-background_row-last" style="background-image: url(img/backgrounds/bg1.jpg);" id="library-background_row-31" data-bg-id="31"></div>
+									<div class="library-background_row library-background_row-first" style="background-image: url(img/backgrounds/bg1.jpg);" id="library-background_row-32" data-bg-id="32"></div>
+									<div class="library-background_row" style="background-image: url(img/backgrounds/bg1.jpg);" id="library-background_row-33" data-bg-id="33"></div>
+									<div class="library-background_row" style="background-image: url(img/backgrounds/bg1.jpg);" id="library-background_row-34" data-bg-id="34"></div>
+									<div class="library-background_row library-background_row-last" style="background-image: url(img/backgrounds/bg1.jpg);" id="library-background_row-35" data-bg-id="35"></div>
+									<div class="library-background_row library-background_row-first" style="background-image: url(img/backgrounds/bg1.jpg);" id="library-background_row-36" data-bg-id="36"></div>
+									<div class="library-background_row" style="background-image: url(img/backgrounds/bg1.jpg);" id="library-background_row-37" data-bg-id="37"></div>
+									<div class="library-background_row" style="background-image: url(img/backgrounds/bg1.jpg);" id="library-background_row-38" data-bg-id="38"></div>
+									<div class="library-background_row library-background_row-last" style="background-image: url(img/backgrounds/bg1.jpg);" id="library-background_row-39" data-bg-id="39"></div>
+									<div class="library-background_row library-background_row-first" style="background-image: url(img/backgrounds/bg1.jpg);" id="library-background_row-40" data-bg-id="40"></div>
+									<div class="library-background_row" style="background-image: url(img/backgrounds/bg1.jpg);" id="library-background_row-41" data-bg-id="41"></div>
+									<div class="library-background_row" style="background-image: url(img/backgrounds/bg1.jpg);" id="library-background_row-42" data-bg-id="42"></div>
+									<div class="library-background_row library-background_row-last" style="background-image: url(img/backgrounds/bg1.jpg);" id="library-background_row-43" data-bg-id="43"></div>
+									<div class="library-background_row library-background_row-first" style="background-image: url(img/backgrounds/bg1.jpg);" id="library-background_row-44" data-bg-id="44"></div>
+									<div class="library-background_row" style="background-image: url(img/backgrounds/bg1.jpg);" id="library-background_row-45" data-bg-id="45"></div>
+									<div class="library-background_row" style="background-image: url(img/backgrounds/bg1.jpg);" id="library-background_row-46" data-bg-id="46"></div>
+									<div class="library-background_row library-background_row-last" style="background-image: url(img/backgrounds/bg1.jpg);" id="library-background_row-47" data-bg-id="47"></div>
+									<div class="library-background_row library-background_row-first" style="background-image: url(img/backgrounds/bg1.jpg);" id="library-background_row-48" data-bg-id="48"></div>
+									<div class="library-background_row" style="background-image: url(img/backgrounds/bg1.jpg);" id="library-background_row-49" data-bg-id="49"></div>
+									<div class="library-background_row" style="background-image: url(img/backgrounds/bg1.jpg);" id="library-background_row-50" data-bg-id="50"></div>
+								</div>
+			</div>
+		</div>
+		<div id="right-6" class="right_content_block" style="display: none;">
+			<div class="right_menu_title">Выберите смайл</div>
+			<div class="library_tab_but library_tab_but-selected" data-tab-id="1">EMOJI</div>
+			<div class="library_tab_but" data-tab-id="2">ИКОНКИ</div>
+			<div class="library_tab_but" data-tab-id="3">ПИКТОГРАММЫ</div>
+			<div class="library_6 library_smiles" id="library_smiles-1">
+				<div class="library_in">
+									<div class="library-smile_row library-smile_row-first" style="background-image: url(img/smiles/1/smile1.png);"></div>
+									<div class="library-smile_row" style="background-image: url(img/smiles/1/smile1.png);"></div>
+									<div class="library-smile_row" style="background-image: url(img/smiles/1/smile1.png);"></div>
+									<div class="library-smile_row" style="background-image: url(img/smiles/1/smile1.png);"></div>
+									<div class="library-smile_row library-smile_row-last" style="background-image: url(img/smiles/1/smile1.png);"></div>
+									<div class="library-smile_row library-smile_row-first" style="background-image: url(img/smiles/1/smile1.png);"></div>
+									<div class="library-smile_row" style="background-image: url(img/smiles/1/smile1.png);"></div>
+									<div class="library-smile_row" style="background-image: url(img/smiles/1/smile1.png);"></div>
+									<div class="library-smile_row" style="background-image: url(img/smiles/1/smile1.png);"></div>
+									<div class="library-smile_row library-smile_row-last" style="background-image: url(img/smiles/1/smile1.png);"></div>
+									<div class="library-smile_row library-smile_row-first" style="background-image: url(img/smiles/1/smile1.png);"></div>
+									<div class="library-smile_row" style="background-image: url(img/smiles/1/smile1.png);"></div>
+									<div class="library-smile_row" style="background-image: url(img/smiles/1/smile1.png);"></div>
+									<div class="library-smile_row" style="background-image: url(img/smiles/1/smile1.png);"></div>
+									<div class="library-smile_row library-smile_row-last" style="background-image: url(img/smiles/1/smile1.png);"></div>
+									<div class="library-smile_row library-smile_row-first" style="background-image: url(img/smiles/1/smile1.png);"></div>
+									<div class="library-smile_row" style="background-image: url(img/smiles/1/smile1.png);"></div>
+									<div class="library-smile_row" style="background-image: url(img/smiles/1/smile1.png);"></div>
+									<div class="library-smile_row" style="background-image: url(img/smiles/1/smile1.png);"></div>
+									<div class="library-smile_row library-smile_row-last" style="background-image: url(img/smiles/1/smile1.png);"></div>
+									<div class="library-smile_row library-smile_row-first" style="background-image: url(img/smiles/1/smile1.png);"></div>
+									<div class="library-smile_row" style="background-image: url(img/smiles/1/smile1.png);"></div>
+									<div class="library-smile_row" style="background-image: url(img/smiles/1/smile1.png);"></div>
+									<div class="library-smile_row" style="background-image: url(img/smiles/1/smile1.png);"></div>
+									<div class="library-smile_row library-smile_row-last" style="background-image: url(img/smiles/1/smile1.png);"></div>
+									<div class="library-smile_row library-smile_row-first" style="background-image: url(img/smiles/1/smile1.png);"></div>
+									<div class="library-smile_row" style="background-image: url(img/smiles/1/smile1.png);"></div>
+									<div class="library-smile_row" style="background-image: url(img/smiles/1/smile1.png);"></div>
+									<div class="library-smile_row" style="background-image: url(img/smiles/1/smile1.png);"></div>
+									<div class="library-smile_row library-smile_row-last" style="background-image: url(img/smiles/1/smile1.png);"></div>
+									<div class="library-smile_row library-smile_row-first" style="background-image: url(img/smiles/1/smile1.png);"></div>
+									<div class="library-smile_row" style="background-image: url(img/smiles/1/smile1.png);"></div>
+									<div class="library-smile_row" style="background-image: url(img/smiles/1/smile1.png);"></div>
+									<div class="library-smile_row" style="background-image: url(img/smiles/1/smile1.png);"></div>
+									<div class="library-smile_row library-smile_row-last" style="background-image: url(img/smiles/1/smile1.png);"></div>
+								</div>
+			</div>
+			<div class="library_6 library_smiles" id="library_smiles-2" style="display: none;">
+				<div class="library_in">
+									<div class="library-smile_row library-smile_row-first" style="background-image: url(img/smiles/2/smile1.png);"></div>
+									<div class="library-smile_row" style="background-image: url(img/smiles/2/smile1.png);"></div>
+									<div class="library-smile_row" style="background-image: url(img/smiles/2/smile1.png);"></div>
+									<div class="library-smile_row" style="background-image: url(img/smiles/2/smile1.png);"></div>
+									<div class="library-smile_row library-smile_row-last" style="background-image: url(img/smiles/2/smile1.png);"></div>
+									<div class="library-smile_row library-smile_row-first" style="background-image: url(img/smiles/2/smile1.png);"></div>
+									<div class="library-smile_row" style="background-image: url(img/smiles/2/smile1.png);"></div>
+									<div class="library-smile_row" style="background-image: url(img/smiles/2/smile1.png);"></div>
+									<div class="library-smile_row" style="background-image: url(img/smiles/2/smile1.png);"></div>
+									<div class="library-smile_row library-smile_row-last" style="background-image: url(img/smiles/2/smile1.png);"></div>
+									<div class="library-smile_row library-smile_row-first" style="background-image: url(img/smiles/2/smile1.png);"></div>
+									<div class="library-smile_row" style="background-image: url(img/smiles/2/smile1.png);"></div>
+									<div class="library-smile_row" style="background-image: url(img/smiles/2/smile1.png);"></div>
+									<div class="library-smile_row" style="background-image: url(img/smiles/2/smile1.png);"></div>
+									<div class="library-smile_row library-smile_row-last" style="background-image: url(img/smiles/2/smile1.png);"></div>
+									<div class="library-smile_row library-smile_row-first" style="background-image: url(img/smiles/2/smile1.png);"></div>
+									<div class="library-smile_row" style="background-image: url(img/smiles/2/smile1.png);"></div>
+									<div class="library-smile_row" style="background-image: url(img/smiles/2/smile1.png);"></div>
+									<div class="library-smile_row" style="background-image: url(img/smiles/2/smile1.png);"></div>
+									<div class="library-smile_row library-smile_row-last" style="background-image: url(img/smiles/2/smile1.png);"></div>
+									<div class="library-smile_row library-smile_row-first" style="background-image: url(img/smiles/2/smile1.png);"></div>
+									<div class="library-smile_row" style="background-image: url(img/smiles/2/smile1.png);"></div>
+									<div class="library-smile_row" style="background-image: url(img/smiles/2/smile1.png);"></div>
+									<div class="library-smile_row" style="background-image: url(img/smiles/2/smile1.png);"></div>
+									<div class="library-smile_row library-smile_row-last" style="background-image: url(img/smiles/2/smile1.png);"></div>
+									<div class="library-smile_row library-smile_row-first" style="background-image: url(img/smiles/2/smile1.png);"></div>
+								</div>
+			</div>
+			<div class="library_6 library_smiles" id="library_smiles-3" style="display: none;">
+				<div class="library_in">
+									<div class="library-smile_row library-smile_row-first" style="background-image: url(img/smiles/3/smile1.png);"></div>
+									<div class="library-smile_row" style="background-image: url(img/smiles/3/smile1.png);"></div>
+									<div class="library-smile_row" style="background-image: url(img/smiles/3/smile1.png);"></div>
+									<div class="library-smile_row" style="background-image: url(img/smiles/3/smile1.png);"></div>
+									<div class="library-smile_row library-smile_row-last" style="background-image: url(img/smiles/3/smile1.png);"></div>
+									<div class="library-smile_row library-smile_row-first" style="background-image: url(img/smiles/3/smile1.png);"></div>
+									<div class="library-smile_row" style="background-image: url(img/smiles/3/smile1.png);"></div>
+									<div class="library-smile_row" style="background-image: url(img/smiles/3/smile1.png);"></div>
+									<div class="library-smile_row" style="background-image: url(img/smiles/3/smile1.png);"></div>
+									<div class="library-smile_row library-smile_row-last" style="background-image: url(img/smiles/3/smile1.png);"></div>
+									<div class="library-smile_row library-smile_row-first" style="background-image: url(img/smiles/3/smile1.png);"></div>
+									<div class="library-smile_row" style="background-image: url(img/smiles/3/smile1.png);"></div>
+									<div class="library-smile_row" style="background-image: url(img/smiles/3/smile1.png);"></div>
+									<div class="library-smile_row" style="background-image: url(img/smiles/3/smile1.png);"></div>
+									<div class="library-smile_row library-smile_row-last" style="background-image: url(img/smiles/3/smile1.png);"></div>
+									<div class="library-smile_row library-smile_row-first" style="background-image: url(img/smiles/3/smile1.png);"></div>
+									<div class="library-smile_row" style="background-image: url(img/smiles/3/smile1.png);"></div>
+									<div class="library-smile_row" style="background-image: url(img/smiles/3/smile1.png);"></div>
+									<div class="library-smile_row" style="background-image: url(img/smiles/3/smile1.png);"></div>
+									<div class="library-smile_row library-smile_row-last" style="background-image: url(img/smiles/3/smile1.png);"></div>
+									<div class="library-smile_row library-smile_row-first" style="background-image: url(img/smiles/3/smile1.png);"></div>
+									<div class="library-smile_row" style="background-image: url(img/smiles/3/smile1.png);"></div>
+									<div class="library-smile_row" style="background-image: url(img/smiles/3/smile1.png);"></div>
+									<div class="library-smile_row" style="background-image: url(img/smiles/3/smile1.png);"></div>
+									<div class="library-smile_row library-smile_row-last" style="background-image: url(img/smiles/3/smile1.png);"></div>
+									<div class="library-smile_row library-smile_row-first" style="background-image: url(img/smiles/3/smile1.png);"></div>
+								</div>
+			</div>
+		</div>
+		<div id="steps_controller">
+			<div id="steps_controller-checkout_but"><div>ЗАКАЗАТЬ</div></div>
+			<div id="steps_controller-next_but"><div>ДАЛЕЕ</div></div>
+		</div>
+	</div>
+</div>
+<div id="footer">
+	<div id="gallery_but">
+		<div id="gallery_but-point"></div>
+		ВДОХНОВИТЬСЯ
+	</div>
+</div>
+
+
+</body>
+</html>
