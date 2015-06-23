@@ -1,3 +1,65 @@
+@font-face {
+	font-family: Waltograph;
+	src: local("Waltograph"),
+	url(http://shmakovdima.ru/caseforlesha/fonts/Waltograph.ttf);
+}
+@font-face {
+	font-family: snappy dna;
+	src: local("snappy dna"),
+	url(http://shmakovdima.ru/caseforlesha/fonts/snappy_dna.ttf);
+}
+@font-face {
+	font-family: SimplyGlamorous;
+	src: local("SimplyGlamorous"),
+	url(http://shmakovdima.ru/caseforlesha/fonts/SimplyGlamorous.ttf);
+}
+@font-face {
+	font-family: Remachine Script;
+	src: local("Remachine Script"),
+	url(http://shmakovdima.ru/caseforlesha//fonts/Remachine_Script_Personal_Use.otf);
+}
+@font-face {
+	font-family: Mustang;
+	src: local("Mustang"),
+	url(fonts/Mustang.otf);
+}
+@font-face {
+	font-family: LeagueGothic-CondensedRegular;
+	src: local("LeagueGothic-CondensedRegular"),
+	url(http://shmakovdima.ru/caseforlesha/fonts/LeagueGothic-CondensedRegular.otf);
+}
+@font-face {
+	font-family: Jellyka - Love and Passion;
+	src: local("Jellyka - Love and Passion"),
+	url(http://shmakovdima.ru/caseforlesha/fonts/Jellyka_Love_and_Passion.ttf);
+}
+@font-face {
+	font-family: Feathergraphy Decoration;
+	src: local("Feathergraphy Decoration"),
+	url(http://shmakovdima.ru/caseforlesha/fonts/Feathergraphy_Decoration.ttf);
+}
+@font-face {
+	font-family: Bira;
+	src: local("Bira"),
+	url(http://shmakovdima.ru/caseforlesha/fonts/Bira_PERSONAL_USE_ONLY.ttf);
+}
+@font-face {
+	font-family: AngillaTattoo;
+	src: local("AngillaTattoo"),
+	url(http://shmakovdima.ru/caseforlesha/fonts/AngillaTattoo_PERSONAL_USE_ONLY.ttf);
+}
+@font-face {
+	font-family: AGLettericaExtraCompressed Roman;
+	src: local("AGLettericaExtraCompressed Roman"),
+	url(http://shmakovdima.ru/caseforlesha/fonts/AGLettericaExtraCompressed Roman.ttf);
+}
+
+
+
+
+
+
+
 html, body {
 	margin: 0;
 	padding: 0;
@@ -7,7 +69,7 @@ html, body {
 }
 
 body {
-	background: #E8E8E8 url('../img/bg-main.jpg') center center no-repeat;
+	background: #E8E8E8;
 	position: absolute;
 	width: 100%;
 }
@@ -34,6 +96,8 @@ body {
 	text-align: center;
 	cursor: pointer;
 	background: #669AC4;
+	transition: 400ms all easy;
+	user-select: none;
 }
 
 #header-menu > li:hover > span {
@@ -50,6 +114,9 @@ body {
 	margin-top: 16px;
 	margin-left: 9px;
 	margin-right: 18px;
+	transition: 400ms all easy;
+	user-select: none;
+
 }
 
 #header-menu > li#header-logo {
@@ -58,15 +125,24 @@ body {
 	height: 67px;
 }
 
-#header-menu > li.header-menu-selected {
+#header-menu > li.header-menu-selected, #header-menu > li.header-menu-active  {
 	background: #295E93;
 }
 
-#header-menu > li.header-menu-selected > span {
-	border-left: #295E93;
+#header-menu > li.header-menu-active:not(.header-menu-selected) {
+	opacity: 0.8;
+}
+
+
+#header-menu > li.header-menu-selected > span,  #header-menu > li.header-menu-active > span {
+	border-left: 2px solid #fff;
 	margin-left: 13px;
 	color: #fff;
 }
+#header-menu > li.header-menu-active:not(.header-menu-selected) > span { 
+	border-left: 2px solid #fff;
+}
+
 
 #header-menu > li:hover:nth-child(2) span {
 	background: url('../img/icon-menu-1.png') right -69px no-repeat;
@@ -93,27 +169,27 @@ body {
 }
 
 
-#header-menu > li:nth-child(2) span, #header-menu > li.header-menu-selected:nth-child(2) > span {
+#header-menu > li:nth-child(2) span, #header-menu > li.header-menu-selected:nth-child(2) > span, #header-menu > li.header-menu-active:nth-child(2) > span   {
 	background: url('../img/icon-menu-1.png') right -1px no-repeat;
 }
 
-#header-menu > li:nth-child(3) span, #header-menu > li.header-menu-selected:nth-child(3) > span {
+#header-menu > li:nth-child(3) span, #header-menu > li.header-menu-selected:nth-child(3) > span, #header-menu > li.header-menu-active:nth-child(3) > span {
 	background: url('../img/icon-menu-2.png') right -1px no-repeat;
 }
 
-#header-menu > li:nth-child(4) span, #header-menu > li.header-menu-selected:nth-child(4) > span {
+#header-menu > li:nth-child(4) span, #header-menu > li.header-menu-selected:nth-child(4) > span, #header-menu > li.header-menu-active:nth-child(4) > span {
 	background: url('../img/icon-menu-3.png') right 2px no-repeat;
 }
 
-#header-menu > li:nth-child(5) span, #header-menu > li.header-menu-selected:nth-child(5) > span {
+#header-menu > li:nth-child(5) span, #header-menu > li.header-menu-selected:nth-child(5) > span, #header-menu > li.header-menu-active:nth-child(5) > span {
 	background: url('../img/icon-menu-4.png') right 2px no-repeat;
 }
 
-#header-menu > li:nth-child(6) span, #header-menu > li.header-menu-selected:nth-child(6) > span {
+#header-menu > li:nth-child(6) span, #header-menu > li.header-menu-selected:nth-child(6) > span, #header-menu > li.header-menu-active:nth-child(6) > span {
 	background: url('../img/icon-menu-5.png') right 3px no-repeat;
 }
 
-#header-menu > li:nth-child(7) span, #header-menu > li.header-menu-selected:nth-child(7) > span {
+#header-menu > li:nth-child(7) span, #header-menu > li.header-menu-selected:nth-child(7) > span, #header-menu > li.header-menu-active:nth-child() > span {
 	background: url('../img/icon-menu-6.png') right 3px no-repeat;
 }
 
@@ -145,7 +221,8 @@ body {
 	width: 365px;
 	height: 100%;
 	right: 0;
-	position: absolute;
+	float:right;
+	position: relative;
 	top: 0;
 	bottom: 0;
 }
@@ -296,7 +373,7 @@ body {
 }
 
 .library-font_row {
-	width: 100%;
+	width: 97%;
 	font-size: 30px;
 	text-align: center;
 	cursor: pointer;
@@ -410,8 +487,9 @@ body {
 	padding: 5px 10px;
 	color: #fff;
 	margin-right: 5px;
-	margin-top: 5px;
-	margin-bottom: 10px;
+	margin-top: 10px;
+	margin-bottom: 0px;
+	text-transform: uppercase;
 	width: 96px;
 	text-align: center;
 	cursor: pointer;
@@ -540,6 +618,7 @@ body {
 	top: 0;
 	right: -320px;
 	cursor: pointer;
+	display: none;
 }
 
 .icon-close:hover {
@@ -613,7 +692,7 @@ body {
 .device_colors {
 	width: 100%;
 	text-align: center;
-	margin-top: 5px;
+	margin-top: 15px;
 }
 
 .device_colors > div {
@@ -659,17 +738,7 @@ body {
 }
 
 
-#device_colors-2 > div:nth-child(1) {
-	background: #C4C4C4;
-}
 
-#device_colors-2 > div:nth-child(2) {
-	background: #828185;
-}
-
-#device_colors-2 > div:nth-child(3) {
-	background: #D8C5AF;
-}
 
 
 #footer {
@@ -761,3 +830,95 @@ body {
 .answer_block {
 	display: none;
 }
+
+/*Add from dima*/
+#phone>a {
+	text-decoration: none;
+	color: inherit;
+}
+
+/*svg*/
+
+canvas {
+	
+}
+svg {
+	position:relative;
+	margin: 0 auto;
+	display: block;
+}
+
+.category_buttons {
+	overflow: hidden;
+}
+
+.svg_controls rect {
+	display: none;
+		transition: 400ms all easy;
+}
+
+.svg_controls rect.work {
+	display: block;
+	cursor: pointer;
+	fill: transparent;
+	stroke: #669AC4;
+	stroke-width: 1;
+	/*border: 1px double #669AC4;*/
+	
+
+}
+
+.svg_controls rect:hover {
+	
+	/*stroke: #295E93;*/
+	
+}
+
+/*BUTTONS*/
+
+.stretch_button, .rotate_button, .move_button, .remove_button {
+	display: none;
+	cursor:pointer;
+		transition: 400ms all easy;
+}
+
+.stretch_button {
+	fill:url(#stretch);
+} 
+.rotate_button {
+	fill:url(#rotate);
+} 
+.move_button {
+	fill:url(#move);
+}
+.remove_button {
+	fill:url(#remove);
+}
+
+.stretch_button.work:hover {
+	fill:url(#stretch_active);
+} 
+.rotate_button.work:hover {
+	fill:url(#rotate_active);
+} 
+.move_button.work:hover {
+	fill:url(#move_active);
+}
+.remove_button.work:hover {
+	fill:url(#remove_active);
+}
+
+.stretch_button.work,  .rotate_button.work, .move_button.work, .remove_button.work  {
+	display: block;
+}
+
+
+#steps_controller-checkout_but {
+	visibility: hidden;
+}
+/*
+#info_block-5 .icon-close {
+	display:block;
+}
+*/
+
