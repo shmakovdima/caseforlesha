@@ -6,8 +6,6 @@ mb_internal_encoding("UTF-8");
 
 include 'function.php';
 
-//тут папка фона
-$fontpath = "fonts/";
 
 
 $config = array(
@@ -18,7 +16,7 @@ $config = array(
 			"patterns_path_big"=>"img/patterns/big/",
 			"patterns_path_small"=>"img/patterns/small/",
 			"desctop_font_size"=>"50",
-			"desctop_font_path"=>$fontpath,
+			"desctop_font_path"=>"fonts/",
 			"desctop_bg_path"=>'img/backgrounds/',
 			"smiles_path"=>'img/smiles/',
 			"desctop_material_path"=>'img/materials/library/',
@@ -265,7 +263,7 @@ $config = array(
 			/*Только в */
 				array(
 						"name" => "Waltograph",
-						"filename" => base64DataUri("fonts/"."Waltograph.ttf")
+						"filename" => base64DataUri("Waltograph.ttf")
 					),
 				array(
 						"name" => "snappy dna",

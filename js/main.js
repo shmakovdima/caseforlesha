@@ -209,19 +209,12 @@ function setup_patterns() {
 			}
 		$(".library_pattern").append(html_text);
 	}
-	/*
 	
-									<div class="library-pattern_row" style="background: url(img/patterns/file1.jpg);" data-font-pattern-id="1" data-url="img/patterns/file1.jpg" id="library-pattern_row-1"></div>
-									<div class="library-pattern_row" style="background: url(img/patterns/file1.jpg);" data-font-pattern-id="2" data-url="img/patterns/file1.jpg" id="library-pattern_row-2"></div>
-									<div class="library-pattern_row" style="background: url(img/patterns/file1.jpg);" data-font-pattern-id="3" data-url="img/patterns/file1.jpg" id="library-pattern_row-3"></div>
-									<div class="library-pattern_row library-pattern_row-last" style="background: url(img/patterns/file1.jpg);" data-url="img/patterns/file1.jpg" data-font-pattern-id="4" id="library-pattern_row-4"></div>
-	*/
 }
 
 
 function setup_font() {
-	
-	
+		
 	var path = config.desctop_font_path;
 	for (value in config.fonts) {
 		var html_text = "";
@@ -232,8 +225,17 @@ function setup_font() {
 		}else{
 			html_text+='<div class="library-font_row"  data-font_url = "'+path+config.fonts[value].filename+'" data-font="'+config.fonts[value].name+'" style="font-family: '+config.fonts[value].name+';" data-font-id="'+value+'" id="library-font_row-'+value+'">'+config.fonts[value].name+'</div>';
 		}
-		
+	
 		$(".library_font").append(html_text);
+
+		//svg_fonts_container
+		//	.append("")
+
+			/*	 <font-face font-family="Waltograph">
+							  <font-face-src>
+								<font-face-url></font-face-url>
+							  </font-face-src>
+    					</font-face> */
 	}
 }
 
