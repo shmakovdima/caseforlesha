@@ -8,12 +8,10 @@ var default_devices_id="";
 var newx, prevx;
 var newy, prevy;
 
-
-
+current_smile = "";
 
 //d3 global
-
-var svg, svg_mask_container, svg_device, svg_material_body, svg_background, svg_text, svg_smiles ,svg_mask_body,  svg_camera;
+var g_texts , g_smiles, svg, svg_mask_container, svg_device, svg_material_body, svg_background, svg_text, svg_smiles ,svg_mask_body,  svg_camera;
 
 
 /*FROM DIMA*/
@@ -147,7 +145,7 @@ function preparing_data(){
 	
 	//svg_generation
 	
-	svg =d3.select(".center_device_svg");
+	svg = d3.select(".center_device_svg");
 
 	svg_controls_svg = d3.select(".controls_device_svg");
 	svg_mask_container = svg.append("defs")
@@ -170,8 +168,17 @@ function preparing_data(){
 			.classed("svg_mask_body", true);
 	svg_camera = svg.append("g")
 			.classed("svg_camera", true);
+
+
 	svg_controls  = svg_controls_svg .append("g")
 			.classed("svg_controls", true);
+
+	g_texts = svg_controls
+				.append("g")
+					.classed("g_texts", true);
+
+	g_smiles = svg_controls.append("g")
+					.classed("g_smiles", true);
 	
 	steps.push(cur_step);
 	object_id = randomHash(10);
@@ -183,22 +190,22 @@ function setup_patterns() {
 	for(value in config.paterns) {	
 			var small = config.patterns_path_small+config.paterns[value].small;
 			var big = config.patterns_path_big+config.paterns[value].big;
-			console.log((value) % 5);
+	
 			if (value == 0) {
 				var html_text="";
 				 html_text+='<div class="library-pattern_row library-pattern_row-first" style="background: url('+small+');" data-url="'+big+'" data-font-pattern-id="'+value+'" id="library-pattern_row-'+value+'"></div>';
 			}else{
 				if(((value) % 5) == 0) {
-					console.log("first"+value);
+				
 					html_text="";
 					html_text+='<div class="library-pattern_row library-pattern_row-first" style="background: url('+small+');" data-url="'+big+'" data-font-pattern-id="'+value+'" id="library-pattern_row-'+value+'"></div>';
 				}else{
 					if(((value) % 5) == 4) {
-						console.log("last"+value);
+					
 						html_text="";
 						html_text+='<div class="library-pattern_row library-pattern_row-last" style="background: url('+small+');" data-url="'+big+'" data-font-pattern-id="'+value+'" id="library-pattern_row-'+value+'"></div>';
 					}else{
-						console.log("норм"+value);
+					
 						html_text="";
 						html_text+='<div class="library-pattern_row " style="background: url('+small+');" data-url="'+big+'" data-font-pattern-id="'+value+'" id="library-pattern_row-'+value+'"></div>';
 					}
@@ -218,7 +225,7 @@ function setup_font() {
 		var html_text = "";
 		if (config.fonts[value].default == true){               
 			desctop.font_id = config.fonts[value].name;
-			console.log("IРИФТ"+desctop.font_id);
+		
 			html_text+='<div class="library-font_row library-font_row-selected"  data-font_url = "'+config.fonts[value].filename+'" data-font="'+config.fonts[value].name+'" style="font-family: '+config.fonts[value].name+';" data-font-id="'+value+'" id="library-font_row-'+value+'">'+config.fonts[value].name+'</div>';
 		}else{
 			html_text+='<div class="library-font_row"  data-font_url = "'+config.fonts[value].filename+'" data-font="'+config.fonts[value].name+'" style="font-family: '+config.fonts[value].name+';" data-font-id="'+value+'" id="library-font_row-'+value+'">'+config.fonts[value].name+'</div>';
@@ -252,8 +259,7 @@ function setup_smiles(){
 
 			category = smiles[value]["images"];
 		
-			console.log(category);
-		
+			
 		
 			if (value==0) {
 			
@@ -268,7 +274,7 @@ function setup_smiles(){
 		
 		
 			for(value1 in category) {
-				console.log(category[value1].small);
+			
 				var hash = randomHash(4);
 				if (value1 == 0) {
 					html_text+='<div class="library-smile_row library-smile_row-first" style="background-image: url('+path+category[value1].small+');" data-url="'+path+category[value1].big+'" id="library-smile_row-'+value1+hash+'" data-smile-id="'+value1+hash+'"></div>';
@@ -322,10 +328,10 @@ function setup_backgrounds() {
 			var path = desctop_bg_path + backgrounds[value].link;
 
 			category = backgrounds[value][0];
-			console.log(backgrounds[value]);
+		
 		
 			if (value==0) {
-				console.log("Да ноль же");
+				
 				html_text+='<div class="library_5  library-backgrouds" id="library_backgrouds-'+value+'">';
 				
 			}else{
@@ -337,7 +343,7 @@ function setup_backgrounds() {
 		
 		
 			for(value1 in category) {
-				console.log(category[value1].small);
+				
 				var hash = randomHash(4);
 				if (value1 == 0) {
 					html_text+='<div class="library-background_row library-background_row-first" style="background-image: url('+path+category[value1].small+');" data-url="'+path+category[value1].big+'" id="library-background_row-'+value1+hash+'" data-bg-id="'+value1+hash+'"></div>';
@@ -396,16 +402,16 @@ function setup_colors() {
 		
 		}else{
 				if((value % 10) == 9) {
-					console.log(value);
+				
 					html_text="";
 					html_text+='<div class="library-color_row library-color_row-last" data-color_id="'+value+'" data-color="'+config.colors[value][0]+'" style="background: '+config.colors[value][0]+';" id="library-color_row-'+value+'"></div>';
 				}else{
 					if((value % 10) == 0) {
-						console.log(value);
+						
 						html_text="";
 						 html_text+='<div class="library-color_row library-color_row-first" data-color_id="'+value+'" data-color="'+config.colors[value][0]+'" style="background: '+config.colors[value][0]+';" id="library-color_row-'+value+'"></div>';
 					}else{
-						console.log(value);
+						
 						html_text="";
 						 html_text+='<div class="library-color_row" data-color_id="'+value+'" data-color="'+config.colors[value][0]+'" style="background: '+config.colors[value][0]+';" id="library-color_row-'+value+'"></div>';				
 					}
@@ -453,12 +459,13 @@ function set_default_text(){
 								.style("font-family", desctop.font_id)
 								.style("font-size",config.desctop_font_size+"px")
 								.attr("x",config.devices[desctop.device_id].width/2)
-								.attr("y", config.devices[desctop.device_id].height/2);
+								.attr("y", config.devices[desctop.device_id].height/2)
+								.on("click", click_text_control);
 		
 	var text_width = $(".svg_text text").width()+text_width_constant;
 	var text_height = $(".svg_text text").height()+text_height_constant;
 	
-	svg_controls.append("rect")
+	g_texts.append("rect")
 		.classed("control_text", true)
 		.classed("work", true)
 		.attr("id", "control_text_rect")
@@ -467,9 +474,10 @@ function set_default_text(){
 		.attr("x", config.devices[desctop.device_id].width/2-text_width/2)
 		.attr("y", config.devices[desctop.device_id].height/2-text_height/2-5)
 		.call(drag_rect)
+		.on('click', click_text_control)
 		.on("dblclick", click_text);
 
-	svg_controls.append("rect")
+	g_texts.append("rect")
 		.classed("control_text", true)
 		.classed("doubled_rect", true)
 		.classed("work", true)
@@ -479,12 +487,13 @@ function set_default_text(){
 		.attr("x", config.devices[desctop.device_id].width/2-text_width/2+3)
 		.attr("y", config.devices[desctop.device_id].height/2-text_height/2-5+3)
 		.call(drag_rect)
+		.on('click', click_text_control)
 		.on("dblclick", click_text);
 
-	console.log(config.devices[desctop.device_id].width/2-text_width/2);
+
 	
 	//Растяжение
-	svg_controls.append("circle")
+	g_texts.append("circle")
 		.classed("control_text", true)
 		.classed("stretch_button",true)
 		.call(drag_stretch)
@@ -493,7 +502,7 @@ function set_default_text(){
 		.attr("cx", config.devices[desctop.device_id].width/2-text_width/2)
 		.attr("cy",  config.devices[desctop.device_id].height/2-text_height/2-5);
 	
-	svg_controls.append("circle")
+	g_texts.append("circle")
 		.classed("control_text", true)
 		.classed("rotate_button",true)
 		.attr("data-rotate", 0)
@@ -503,7 +512,7 @@ function set_default_text(){
 		.attr("cx", config.devices[desctop.device_id].width/2+text_width/2)
 		.attr("cy",  config.devices[desctop.device_id].height/2-text_height/2-5);
 	
-	svg_controls.append("circle")
+	g_texts.append("circle")
 		.classed("control_text", true)
 		.classed("move_button",true)
 		.classed("work",true)
@@ -538,11 +547,12 @@ function set_smiles_image(url) {
 		$("#header-menu-item-6").addClass("header-menu-active");
 	});
 	
+	d3.selectAll('.control_smile').classed("work",false);
 	
 	var text_width = parseFloat($(".image_smile."+object_id).attr("width"))+text_width_constant;
 	var text_height = parseFloat($(".image_smile."+object_id).attr("height"))+text_height_constant;
 	
-	svg_controls.append("rect")
+	g_smiles.append("rect")
 		.classed("control_smile", true)
 		.classed("control_smile_main", true)
 		.attr("data-object_id", object_id)
@@ -553,9 +563,10 @@ function set_smiles_image(url) {
 		.attr("height", text_height)
 		.attr("x", config.devices[desctop.device_id].width/2-text_width/2)
 		.attr("y", config.devices[desctop.device_id].height/2-text_height/2)
+		.on("click", control_smile_click)
 		.call(drag_smile_rect);
 
-	svg_controls.append("rect")
+	g_smiles.append("rect")
 		.classed("control_smile", true)
 		.classed("control_smile_back", true)
 		.attr("data-object_id", object_id)
@@ -566,6 +577,7 @@ function set_smiles_image(url) {
 		.attr("height", text_height-6)
 		.attr("x", config.devices[desctop.device_id].width/2-text_width/2+3)
 		.attr("y", config.devices[desctop.device_id].height/2-text_height/2+3)
+		.on("click", control_smile_click)
 		.call(drag_smile_rect);
 	//	.on("dblclick", click_text);
 	
@@ -574,7 +586,7 @@ function set_smiles_image(url) {
 	//Растяжение
 
 	
-	svg_controls.append("circle")
+	g_smiles.append("circle")
 		.classed("control_smile", true)
 		.attr("data-object_id", object_id)
 		.classed(object_id, true)
@@ -582,10 +594,11 @@ function set_smiles_image(url) {
 		.attr("data-rotate", 0)
 		.classed("work",true)
 		.attr("r", 12.5)
+		.call(rotate_smile)
 		.attr("cx", config.devices[desctop.device_id].width/2+text_width/2)
 		.attr("cy",  config.devices[desctop.device_id].height/2-text_height/2);
 	
-	svg_controls.append("circle")
+	g_smiles.append("circle")
 		.classed("control_smile", true)
 		.classed("stretch_button",true)
 		.attr("data-object_id", object_id)
@@ -597,19 +610,19 @@ function set_smiles_image(url) {
 		.attr("cy",  config.devices[desctop.device_id].height/2+text_height/2);
 	
 	
-	svg_controls.append("circle")
+	g_smiles.append("circle")
 		.classed("control_smile", true)
 		.attr("data-object_id", object_id)
 		.classed(object_id, true)
 		.classed("move_button",true)
 		.classed("work",true)
 		.attr("r", 12.5)
-	//	.call(drag_text)
+		.call(drag_smile)
 		.attr("cx", config.devices[desctop.device_id].width/2-text_width/2)
 		.attr("cy",  config.devices[desctop.device_id].height/2-text_height/2);
 	
 	//REMOVE BUTTON
-	svg_controls.append("circle")
+	g_smiles.append("circle")
 		.classed("control_smile", true)
 		.classed("delete_button",true)
 		.attr("data-object_id", object_id)
@@ -619,12 +632,22 @@ function set_smiles_image(url) {
 		.attr("r", 12.5)
 		.attr("cx", config.devices[desctop.device_id].width/2-text_width/2)
 		.attr("cy",  config.devices[desctop.device_id].height/2+text_height/2);
-	
+}
+
+function click_text_control(){
+	d3.selectAll(".control_text").classed("work", true);
+}
+
+function control_smile_click(){
+	d3.selectAll(".control_smile").classed("work", false);
+	var current_smile = d3.select(this).attr("data-object_id");
+	console.log(current_smile);
+	d3.selectAll(".control_smile."+current_smile).classed("work", true);
 }
 
 
-
 function click_text(){
+	
 		swal({  
 						title: "Вставьте текст",  
 						type: "input",  
@@ -649,12 +672,16 @@ function click_text(){
 function change_step(obj) {
 	$("#steps_controller-next_but").css("visibility", "visible");
 	var id = $(obj).data('menuId');
+
+	$(".g_texts").css("display", "none");
+	$(".g_smiles").css("display", "none");
 	
 	if ($(obj).hasClass('header-menu-selected')) {
 		return;
 	}
 	
 	d3.selectAll(".control_text").classed("work", false);
+	d3.selectAll(".control_smile").classed("work", false);
 	
 	if (id =="1") {
 		swal({   
@@ -678,19 +705,7 @@ function change_step(obj) {
 				
 		set_step(obj, id);
 
-		if (id=="4") {
-			if ($(".library_font div").length==0) setup_font();
-			if ($(".svg_camera").find('image').length==0) set_material_default();
-			if (!($(".library_color div").length>0)) {
-				setup_colors();
-				setup_patterns();
-			}
-			if ($(".svg_text text").length==0) {
-				set_default_text();				
-			}
-			d3.selectAll(".control_text").classed("work", true);
-
-		}
+		
 
 		if (id=="2") {
 			if (!($(".library_check div").length>0)) {
@@ -707,11 +722,23 @@ function change_step(obj) {
 			if ($(".svg_text text").length==0) {
 					set_default_text();	
 			}
-			
+			$(".g_texts").css("display", "block");
 			d3.selectAll(".control_text").classed("work", true);
-			
-
 		}
+		if (id=="4") {
+			if ($(".library_font div").length==0) setup_font();
+			if ($(".svg_camera").find('image').length==0) set_material_default();
+			if (!($(".library_color div").length>0)) {
+				setup_colors();
+				setup_patterns();
+			}
+			if ($(".svg_text text").length==0) {
+				set_default_text();				
+			}
+			$(".g_texts").css("display", "block");
+			d3.selectAll(".control_text").classed("work", true);
+		}
+
 		if (id=="5"){
 			if (!($(".library-backgrouds div").length>0)) {
 				setup_backgrounds();
@@ -726,6 +753,8 @@ function change_step(obj) {
 			if (!($("#right-6 .category_buttons div").length>0)) {
 				setup_smiles();
 			}
+			$(".g_smiles").css("display", "block");
+
 		}
 	}
 }
@@ -779,14 +808,11 @@ function remove_setting() {
 }
 
 
-function set_material(material_id) {
-	
+function set_material(material_id) {	
 	$("#steps_controller-checkout_but").css("visibility", "visible");
-	
 	$("#header-menu-item-2").addClass("header-menu-active");
 	var id_device = config.devices[desctop.device_id].id;
 	desctop.material_id = material_id;		
-	
 	$(".library-case_row").removeClass("library-case_row-selected");
 	$("#library-case_row-"+material_id).addClass("library-case_row-selected");
 	set_material_color_default(material_id);
@@ -799,13 +825,13 @@ function set_material_default() {
 	if (config.materials[id_device].length>1) {
 		var breakpoint = true;
 		for (value in config.materials[id_device]) {
-			console.log(breakpoint);
+	
 			if (config.materials[id_device][value].default==true) {
 				if (breakpoint==false) {
 					console.log("Ошибка, несколько дефолтных чехлов при телефоне" + id_device);
 				}else{
 					 set_material(value);
-					 console.log(value);
+					
 					 breakpoint = false;
 				}
 			}
@@ -824,7 +850,7 @@ function set_material_color_default(material_id) {
 	$(".device_colors").find("div").remove();
 
 	var id_device = config.devices[desctop.device_id].id;
-	console.log(material_id +" "+  material_id );
+	
 	if (config.materials[id_device][material_id].colors.length>1) {
 			var breakpoint = true;
 			for (value in config.materials[id_device][material_id].colors) {
@@ -838,7 +864,7 @@ function set_material_color_default(material_id) {
 						console.log("Ошибка, несколько дефолтных чехлов при телефоне" + id_device);
 					}else{
 					   set_material_color(material_id, value);
-					   console.log(config.materials[id_device][material_id].colors[value].color);
+					  
 					   breakpoint = false;
 					}
 				}
@@ -932,7 +958,6 @@ function set_material_color(material_id, material_color) {
 	});
 	
 	
-	console.log(color_object);
 
 }
 
@@ -1045,8 +1070,7 @@ function set_font(font_id) {
 	var url = d3.select("#library-font_row-"+font_id).attr("data-font_url");
 	
 	
-	console.log(url);
-	
+
 	
 	svg_fonts_container.selectAll("font-face").remove();
 	svg_fonts_container
@@ -1241,6 +1265,72 @@ function get_angle(center, point){
 var rotate, prev_rotate, center;
 
 
+
+var rotate_smile = d3.behavior.drag() 					
+					.on('dragstart', function() {
+						d3.event.sourceEvent.stopPropagation();
+
+						current_smile = d3.select(this).attr("data-object_id");
+
+						d3.selectAll(".control_smile."+current_smile).classed("work", true);	
+
+						newx = parseFloat(d3.select(this).attr("cx"));
+						newy = parseFloat(d3.select(this).attr("cy"));
+
+						rotate = d3.select(this).attr("data-rotate");
+						
+						icon_scale = 1;
+
+						var M = d3.mouse(svg_smiles.node());
+								prevx = M[0];
+								prevy = M[1];
+
+						var point = {
+							x: newx,
+							y: newy
+						};
+
+						center = {
+							x: parseFloat(d3.select("image.image_smile."+current_smile).attr("x")),
+							y: parseFloat(d3.select("image.image_smile."+current_smile).attr("y"))
+						};
+
+						prev_rotate = get_angle(center, point);
+
+
+					})
+					.on('drag', function() {	
+						svg_width = config.devices[desctop.device_id].width;
+						svg_height = config.devices[desctop.device_id].width;
+
+						var M = d3.mouse(svg_controls.node());
+
+						newx = parseFloat(d3.select(this).attr("cx"));
+						newy = parseFloat(d3.select(this).attr("cy"));
+						
+						var point = {
+							x: M[0],
+							y: M[1]
+						};
+						
+
+						var rotate_angle = get_angle(center, point);
+						
+						rotate = (rotate_angle-prev_rotate);
+							
+						d3.select(this).attr("data-rotate", rotate);
+			
+						
+
+						
+						d3.selectAll("image.image_smile."+current_smile+", .svg_controls .control_smile."+current_smile)
+                                         .attr("transform", "rotate("+rotate+","+center.x+","+center.y+")translate("+(-center.x*(icon_scale-1))+", "+(-center.y*(icon_scale-1))+")scale("+icon_scale+")"); 
+
+					})
+					.on('dragend', function() {
+						
+					});
+
 var rotate_text =  d3.behavior.drag() 					
 					.on('dragstart', function() {	
 						d3.event.sourceEvent.stopPropagation();
@@ -1293,12 +1383,10 @@ var rotate_text =  d3.behavior.drag()
 						rotate = (rotate_angle-prev_rotate);
 							
 						d3.select(this).attr("data-rotate", rotate);
-						
-						console.log(rotate);
+			
 						
 						check_alert();
 
-						console.log("rotate"+rotate);
 						
 						d3.selectAll(".svg_text text, .svg_controls .control_text")
                                          .attr("transform", "rotate("+rotate+","+center.x+","+center.y+")translate("+(-center.x*(icon_scale-1))+", "+(-center.y*(icon_scale-1))+")scale("+icon_scale+")"); 
@@ -1309,26 +1397,100 @@ var rotate_text =  d3.behavior.drag()
 							 .attr("transform", "rotate("+(-rotate)+","+center.x+","+center.y+")translate("+(-center.x*(icon_scale-1))+", "+(-center.y*(icon_scale-1))+")scale("+icon_scale+")"); 
 					})
 					.on('dragend', function() {
-						
+						click_text_control();
 					});
-
-
-
 
 var icon_scale = 1;
 var rotate_x;
 var rotate_y;
 
 
+var drag_smile =  d3.behavior.drag() 					
+					.on('dragstart', function() {
+						d3.event.sourceEvent.stopPropagation();
+						
+						d3.selectAll(".control_smile").classed("work", false);
+						current_smile = d3.select(this).attr("data-object_id");
+						d3.selectAll(".control_smile."+current_smile).classed("work", true);
+				
+						newx = parseFloat(d3.select(this).attr("cx"));
+						newy = parseFloat(d3.select(this).attr("cy"));
+						d3.event.sourceEvent.stopPropagation();
+						rotate = d3.select(".control_smile.rotate_button."+current_smile).attr("data-rotate");
 
+						d3.selectAll("image.image_smile."+current_smile+", .svg_controls rect.control_smile."+current_smile).each(function (d) {
+   							 d3.select(this)
+								 .attr("data-prevx", parseFloat(d3.select(this).attr("x")))
+							 	 .attr("data-prevy", parseFloat(d3.select(this).attr("y")));
+ 						});
+					
+						d3.selectAll("circle.control_smile."+current_smile).each(function (d) {
+							d3.select(this)
+								 .attr("data-prevx", parseFloat(d3.select(this).attr("cx")))
+							 	 .attr("data-prevy", parseFloat(d3.select(this).attr("cy")));	
+						});
+						var M = d3.mouse(svg_text.node());
+						prevx = M[0];
+						prevy = M[1];
+					})
+					.on('drag', function() {
+
+						var dx = (newx+(d3.event.x-prevx));
+						var dy = (newy+(d3.event.y-prevy));
+						
+						var deltax = dx - newx;
+							
+						var deltay = dy - newy;
+						
+						
+						d3.selectAll("image.image_smile."+current_smile).each(function (d) {
+							d3.select(this)
+								 .attr("x", parseFloat(d3.select(this).attr("data-prevx"))+deltax)
+							 	 .attr("y", parseFloat(d3.select(this).attr("data-prevy"))+deltay);
+								
+							rotate_x = parseFloat(d3.select(this).attr("data-prevx"))+deltax;
+							rotate_y = parseFloat(d3.select(this).attr("data-prevy"))+deltay;
+							
+							d3.select(this)
+								.attr("transform", "rotate("+rotate+","+rotate_x+","+rotate_y+")translate("+(-rotate_x*(icon_scale-1))+", "+(-rotate_y*(icon_scale-1))+")scale("+icon_scale+")"); 
+ 						});
+
+
+						d3.selectAll("image.image_smile."+current_smile)
+							 .attr("data-prevx_check", rotate_x)
+						 	 .attr("data-prevy_check", rotate_y)
+							 .attr("transform", "rotate("+rotate+","+rotate_x+","+rotate_y+")translate("+(-rotate_x*(icon_scale-1))+", "+(-rotate_y*(icon_scale-1))+")scale("+icon_scale+")"); ;
+
+						
+						d3.selectAll(".svg_controls rect.control_smile."+current_smile).each(function (d) {
+   							 d3.select(this)
+							 	 .attr("transform", "rotate("+rotate+","+rotate_x+","+rotate_y+")translate("+(-rotate_x*(icon_scale-1))+", "+(-rotate_y*(icon_scale-1))+")scale("+icon_scale+")")
+								 .attr("x", parseFloat(d3.select(this).attr("data-prevx"))+deltax)
+							 	 .attr("y", parseFloat(d3.select(this).attr("data-prevy"))+deltay);
+ 						});
+					
+						
+						d3.selectAll("circle.control_smile."+current_smile).each(function (d) {
+							d3.select(this)
+								 .attr("transform", "rotate("+rotate+","+rotate_x+","+rotate_y+")translate("+(-rotate_x*(icon_scale-1))+", "+(-rotate_y*(icon_scale-1))+")scale("+icon_scale+")")
+								 .attr("cx", parseFloat(d3.select(this).attr("data-prevx"))+deltax)
+							 	 .attr("cy", parseFloat(d3.select(this).attr("data-prevy"))+deltay);	
+						});
+
+
+
+					})
+					.on('dragend', function() {
+						
+					});
 
 var drag_text =  d3.behavior.drag() 					
 					.on('dragstart', function() {	
 						d3.event.sourceEvent.stopPropagation();
 						
 				
-							newx = parseFloat(d3.select(this).attr("cx"));
-							newy = parseFloat(d3.select(this).attr("cy"));
+						newx = parseFloat(d3.select(this).attr("cx"));
+						newy = parseFloat(d3.select(this).attr("cy"));
 						
 						
 						
@@ -1405,19 +1567,89 @@ var drag_text =  d3.behavior.drag()
 						
 					});
 
-current_smile = "";
 
 
-var drag_smile_rect =  d3.behavior.drag() 					
-					.on('dragstart', function() {
+var drag_smile_rect = d3.behavior.drag() 					
+					 .on('dragstart', function() {
+						d3.event.sourceEvent.stopPropagation();
+
+						d3.selectAll(".control_smile").classed("work", false);
 						current_smile = d3.select(this).attr("data-object_id");
+						d3.selectAll(".control_smile."+current_smile).classed("work", true);
+
+						
+
+						rotate = d3.select(".control_smile.rotate_button."+current_smile).attr("data-rotate");
+
+						d3.selectAll("image.image_smile."+current_smile+", .svg_controls rect.control_smile."+current_smile).each(function (d) {
+   							 d3.select(this)
+								 .attr("data-prevx", parseFloat(d3.select(this).attr("x")))
+							 	 .attr("data-prevy", parseFloat(d3.select(this).attr("y")));
+ 						});
+
+ 						d3.selectAll("circle.control_smile."+current_smile).each(function (d) {
+							d3.select(this)
+								 .attr("data-prevx", parseFloat(d3.select(this).attr("cx")))
+							 	 .attr("data-prevy", parseFloat(d3.select(this).attr("cy")));	
+						});
+
+
+						var M = d3.mouse(svg_controls.node());
+
 						newx = parseFloat(d3.select(this).attr("x"));
 						newy = parseFloat(d3.select(this).attr("y"));
-						d3.event.sourceEvent.stopPropagation();
-						rotate = d3.select(".control_smile.rotate_button."+current_smile).attr("data-rotate");
+
+						prevx = M[0];
+						prevy = M[1];
+
+
 					})
 					.on('drag', function() {
 
+						var dx = (newx+(d3.event.x-prevx));
+						var dy = (newy+(d3.event.y-prevy));
+						
+						var deltax = dx - newx;
+							
+						var deltay = dy - newy;
+
+						console.log(current_smile);
+
+						console.log(deltax);
+
+
+						d3.selectAll(".svg_smiles image.image_smile."+current_smile).each(function (d) {
+							d3.select(this)
+								 .attr("x", parseFloat(d3.select(this).attr("data-prevx"))+deltax)
+							 	 .attr("y", parseFloat(d3.select(this).attr("data-prevy"))+deltay);
+								
+							rotate_x = parseFloat(d3.select(this).attr("data-prevx"))+deltax;
+							rotate_y = parseFloat(d3.select(this).attr("data-prevy"))+deltay;
+							
+							d3.select(this)
+								.attr("transform", "rotate("+rotate+","+rotate_x+","+rotate_y+")translate("+(-rotate_x*(icon_scale-1))+", "+(-rotate_y*(icon_scale-1))+")scale("+icon_scale+")"); 
+ 						});
+
+ 						d3.selectAll(".svg_smiles image.image_smile."+current_smile)
+							 .attr("data-prevx_check", rotate_x)
+						 	 .attr("data-prevy_check", rotate_y)
+							 .attr("transform", "rotate("+rotate+","+rotate_x+","+rotate_y+")translate("+(-rotate_x*(icon_scale-1))+", "+(-rotate_y*(icon_scale-1))+")scale("+icon_scale+")"); ;
+
+						
+						d3.selectAll(".svg_controls rect.control_smile."+current_smile).each(function (d) {
+   							 d3.select(this)
+							 	 .attr("transform", "rotate("+rotate+","+rotate_x+","+rotate_y+")translate("+(-rotate_x*(icon_scale-1))+", "+(-rotate_y*(icon_scale-1))+")scale("+icon_scale+")")
+								 .attr("x", parseFloat(d3.select(this).attr("data-prevx"))+deltax)
+							 	 .attr("y", parseFloat(d3.select(this).attr("data-prevy"))+deltay);
+ 						});
+					
+						
+						d3.selectAll("circle.control_smile."+current_smile).each(function (d) {
+							d3.select(this)
+								 .attr("transform", "rotate("+rotate+","+rotate_x+","+rotate_y+")translate("+(-rotate_x*(icon_scale-1))+", "+(-rotate_y*(icon_scale-1))+")scale("+icon_scale+")")
+								 .attr("cx", parseFloat(d3.select(this).attr("data-prevx"))+deltax)
+							 	 .attr("cy", parseFloat(d3.select(this).attr("data-prevy"))+deltay);	
+						});
 					})
 					.on('dragend', function() {
 
@@ -1427,7 +1659,7 @@ var drag_smile_rect =  d3.behavior.drag()
 var drag_rect =  d3.behavior.drag() 					
 					.on('dragstart', function() {	
 						d3.event.sourceEvent.stopPropagation();
-						
+							click_text_control();
 				
 							newx = parseFloat(d3.select(this).attr("x"));
 							newy = parseFloat(d3.select(this).attr("y"));
@@ -1450,8 +1682,7 @@ var drag_rect =  d3.behavior.drag()
 						var M = d3.mouse(svg_text.node());
 						prevx = M[0];
 						prevy = M[1];
-
-						
+	
 					})
 					.on('drag', function() {
 											
@@ -1507,7 +1738,13 @@ var drag_rect =  d3.behavior.drag()
 					});
 
 var delete_smile = function(){
+	var current_smile  = d3.select(this).attr("data-object_id");
+	d3.selectAll("."+current_smile).remove();
 
+	if ($(".svg_smiles image").length==0) {
+		$("#header-menu-item-6").removeClass("header-menu-active");
+	}
+	current_smile = "";
 };
 
 function check_alert() {
@@ -1533,23 +1770,21 @@ function check_coords(){
 	coords.se.y-=coord_screen.top;
 	coords.sw.y-=coord_screen.top;
 	
+	if (((coords.nw.x-0)<0) || ((coords.nw.y-0)<0)) {  return false;}
 	
+	if (((coords.ne.x+0)>config.devices[desctop.device_id].width) || ((coords.nw.y-0)<0)) {  return false;}
 	
-	if (((coords.nw.x-0)<0) || ((coords.nw.y-0)<0)) {console.log("nw");  return false;}
+	if (((coords.sw.x-0)<0) || ((coords.sw.y+0)>config.devices[desctop.device_id].height)) {  return false;}
 	
-	if (((coords.ne.x+0)>config.devices[desctop.device_id].width) || ((coords.nw.y-0)<0)) {console.log("ne");  return false;}
-	
-	if (((coords.sw.x-0)<0) || ((coords.sw.y+0)>config.devices[desctop.device_id].height)) {console.log("sw");  return false;}
-	
-	if (((coords.se.x+0)>config.devices[desctop.device_id].width) || ((coords.se.y+0)>config.devices[desctop.device_id].height)) {console.log("sw");  return false;}
+	if (((coords.se.x+0)>config.devices[desctop.device_id].width) || ((coords.se.y+0)>config.devices[desctop.device_id].height)) {  return false;}
 	
 	return true;
-
-
 }
 
 var svg = document.querySelector('svg');
 var pt  = svg.createSVGPoint();
+
+
 function screenCoordsForRect(rect){
   var corners = {};
   var matrix  = rect.getScreenCTM();
@@ -1568,13 +1803,11 @@ function screenCoordsForRect(rect){
   return corners;
 }
 
-
-
-
-
 var drag_stretch =  d3.behavior.drag() 					
 					.on('dragstart', function() {	
+
 						d3.event.sourceEvent.stopPropagation();
+						click_text_control();
 						newx = parseFloat(d3.select(this).attr("cx"));
 						newy = parseFloat(d3.select(this).attr("cy"));
 						d3.event.sourceEvent.stopPropagation();
@@ -1666,5 +1899,25 @@ var randomHash = (function () {
 
 
 //SVG DOM injection
+jQuery(function($){
+	$(document).mouseup(function (e){ // событие клика по веб-документу
+		var div = $(".control_text"); // тут указываем ID элемента
 
+		if (!div.is(e.target) // если клик был не по нашему блоку
+		    && (div.has(e.target).length === 0)
+		    && (e.target.closest("svg")!==null)) { // и не по его дочерним элементам
+			d3.selectAll(".control_text").classed("work", false); // скрываем его
+		}
+	});
+});
 
+jQuery(function($){
+	$(document).mouseup(function (e){ // событие клика по веб-документу
+		var div = $(".control_smile"); // тут указываем ID элемента
+		if (!div.is(e.target) // если клик был не по нашему блоку
+		    && (div.has(e.target).length === 0)
+		    && (e.target.closest("svg")!==null)) { // и не по его дочерним элементам
+			d3.selectAll(".control_smile").classed("work", false); // скрываем его
+		}
+	});
+});

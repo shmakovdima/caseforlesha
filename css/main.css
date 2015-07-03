@@ -850,10 +850,6 @@ body {
 
 /*svg*/
 
-canvas {
-	
-}
-
 svg {
 	
 	position:relative;
@@ -867,23 +863,19 @@ svg {
 }
 
 
-svg_center {
-	position:relative;
-	margin: 0 auto;
-	display: block;
-}
-
 .category_buttons {
 	overflow: hidden;
 }
 
 .svg_controls rect {
-	display: none;
-		transition: 400ms all easy;
+	opacity: 0;
+	cursor: pointer;
+	transition: 400ms all easy;
 }
 
 .svg_controls rect.work {
 	display: block;
+	opacity: 1;
 	cursor: pointer;
 	fill: transparent;
 	stroke: #669AC4;
@@ -892,7 +884,6 @@ svg_center {
 }
 
 .svg_controls rect:hover {
-	
 	/*stroke: #295E93;*/
 	
 }
@@ -900,7 +891,8 @@ svg_center {
 /*BUTTONS*/
 
 .stretch_button, .rotate_button, .move_button, .delete_button {
-	display: none;
+	
+	opacity: 0;
 	cursor:pointer;
 		transition: 400ms all easy;
 }
@@ -933,6 +925,7 @@ svg_center {
 
 .stretch_button.work,  .rotate_button.work, .move_button.work, .delete_button.work  {
 	display: block;
+	opacity: 1;
 }
 
 
