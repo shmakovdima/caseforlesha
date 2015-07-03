@@ -214,7 +214,7 @@ function setup_patterns() {
 			}
 		$(".library_pattern").append(html_text);
 	}
-	
+	$('.library, .library_2, .library_3, .library_4, .library_5, .library_6').perfectScrollbar({wheelSpeed: 30, wheelPropagation: false, minScrollbarLength: 1});	
 }
 
 
@@ -240,6 +240,7 @@ function setup_font() {
 							  </font-face-src>
     					</font-face> */
 	}
+	$('.library, .library_2, .library_3, .library_4, .library_5, .library_6').perfectScrollbar({wheelSpeed: 30, wheelPropagation: false, minScrollbarLength: 1});
 }
 
 
@@ -307,6 +308,7 @@ function setup_smiles(){
 	}
 	
 	$(".library-smiles").css("top", 65+$("#right-6 .category_buttons").height()+"px");
+	$('.library, .library_2, .library_3, .library_4, .library_5, .library_6').perfectScrollbar({wheelSpeed: 30, wheelPropagation: false, minScrollbarLength: 1});
 
 	
 }
@@ -388,6 +390,8 @@ function setup_backgrounds() {
 	}
 	
 	$(".library-backgrouds").css("top", 40+$("#right-5 .category_buttons").height()+"px");
+	$('.library, .library_2, .library_3, .library_4, .library_5, .library_6').perfectScrollbar({wheelSpeed: 30, wheelPropagation: false, minScrollbarLength: 1});
+
 }
 
 function setup_colors() {
@@ -449,6 +453,7 @@ function prepare_devices(){
 	}	
 	
 	set_device(default_devices_id);
+	$('.library, .library_2, .library_3, .library_4, .library_5, .library_6').perfectScrollbar({wheelSpeed: 30, wheelPropagation: false, minScrollbarLength: 1});
 }
 
 function set_default_text(){
@@ -524,6 +529,8 @@ function set_default_text(){
 	
 	
 	$("#header-menu-item-3").addClass("header-menu-active");
+	$('.library, .library_2, .library_3, .library_4, .library_5, .library_6').perfectScrollbar({wheelSpeed: 30, wheelPropagation: false, minScrollbarLength: 1});
+
 	//svg_controls.append("image").
 }
 
@@ -633,6 +640,8 @@ function set_smiles_image(url) {
 		.attr("r", 12.5)
 		.attr("cx", config.devices[desctop.device_id].width/2-text_width/2)
 		.attr("cy",  config.devices[desctop.device_id].height/2+text_height/2);
+	$('.library, .library_2, .library_3, .library_4, .library_5, .library_6').perfectScrollbar({wheelSpeed: 30, wheelPropagation: false, minScrollbarLength: 1});
+
 }
 
 function click_text_control(){
@@ -773,6 +782,8 @@ function set_step(obj, id) {
 		$('#info_block-' + id).show();
 		$('.device_colors').hide();
 		$('#device_colors-' + id).show();
+		$('.library, .library_2, .library_3, .library_4, .library_5, .library_6').perfectScrollbar({wheelSpeed: 30, wheelPropagation: false, minScrollbarLength: 1});
+
 }
 
 function remove_setting() {
@@ -787,7 +798,7 @@ function remove_setting() {
 	desctop.text= config.default_text;
 	desctop.font_color_id="";
 	desctop.font_pattern_id="";
-	
+
 	//Remove
 	svg_text.selectAll("text").remove();
 	svg_controls.selectAll('rect').remove();
@@ -796,7 +807,7 @@ function remove_setting() {
 	svg_mask_body.selectAll("rect").remove();
 	svg_material_body.selectAll("image").remove();
 	svg_camera.selectAll("image").remove();
-
+	svg_smiles.selectAll("image").remove();
 	//Удаление параметров
 	$(".library-background_row").removeClass("library-background_row-selected");
 	$(".library-smile_row").removeClass("library-smile_row-selected");
@@ -817,6 +828,8 @@ function set_material(material_id) {
 	$(".library-case_row").removeClass("library-case_row-selected");
 	$("#library-case_row-"+material_id).addClass("library-case_row-selected");
 	set_material_color_default(material_id);
+	$('.library, .library_2, .library_3, .library_4, .library_5, .library_6').perfectScrollbar({wheelSpeed: 30, wheelPropagation: false, minScrollbarLength: 1});
+
 }
 
 
@@ -878,6 +891,8 @@ function set_material_color_default(material_id) {
 		//$(".device_colors").append(html_text);
 		set_material_color(material_id ,0);
 	}
+	$('.library, .library_2, .library_3, .library_4, .library_5, .library_6').perfectScrollbar({wheelSpeed: 30, wheelPropagation: false, minScrollbarLength: 1});
+
 }
 
 function set_material_color(material_id, material_color) {
@@ -959,6 +974,7 @@ function set_material_color(material_id, material_color) {
 	});
 	
 	
+	$('.library, .library_2, .library_3, .library_4, .library_5, .library_6').perfectScrollbar({wheelSpeed: 30, wheelPropagation: false, minScrollbarLength: 1});
 
 }
 
@@ -982,6 +998,8 @@ function set_check() {
 		$(".library_check").append(html_text);	
 	}	
 	set_material_default();
+	$('.library, .library_2, .library_3, .library_4, .library_5, .library_6').perfectScrollbar({wheelSpeed: 30, wheelPropagation: false, minScrollbarLength: 1});
+
 
 }
 
@@ -1020,7 +1038,8 @@ function set_device(device_id) {
 		
 	$('.library-device_row').removeClass('library-device_row-selected');
 	$('#library-device_row-' + device_id).addClass('library-device_row-selected');
-	
+	$('.library, .library_2, .library_3, .library_4, .library_5, .library_6').perfectScrollbar({wheelSpeed: 30, wheelPropagation: false, minScrollbarLength: 1});
+
 	//$('#device').css('background-image', 'url(' + config.devices_desctop_path + config.devices[device_id].desctop_img + ')');
 }
 
@@ -1032,6 +1051,8 @@ function set_smile(smile_id) {
 	
 	$(".library-smile_row").removeClass("library-smile_row-selected");
 	$("#library-smile_row-"+smile_id).addClass("library-smile_row-selected");
+	$('.library, .library_2, .library_3, .library_4, .library_5, .library_6').perfectScrollbar({wheelSpeed: 30, wheelPropagation: false, minScrollbarLength: 1});
+
 }
 
 
@@ -1059,6 +1080,8 @@ function set_bg(bg_id) {
 	//Append mask and camera
 	//required data
 	$("#header-menu-item-5").addClass("header-menu-active");
+	$('.library, .library_2, .library_3, .library_4, .library_5, .library_6').perfectScrollbar({wheelSpeed: 30, wheelPropagation: false, minScrollbarLength: 1});
+
 		
 }
 
@@ -1101,6 +1124,8 @@ function set_font(font_id) {
 	$('.library-font_row').removeClass('library-font_row-selected');
 	$('#library-font_row-' + font_id).addClass('library-font_row-selected');
 	restart_depend();
+	$('.library, .library_2, .library_3, .library_4, .library_5, .library_6').perfectScrollbar({wheelSpeed: 30, wheelPropagation: false, minScrollbarLength: 1});
+
 }
 
 
@@ -1149,6 +1174,8 @@ function set_font_pattern(font_pattern_id) {
 	$(".library-color_row").removeClass("library-color_row-selected");
 	$('.library-pattern_row').removeClass('library-pattern_row-selected');
 	$('#library-pattern_row-' + font_pattern_id).addClass('library-pattern_row-selected');
+	$('.library, .library_2, .library_3, .library_4, .library_5, .library_6').perfectScrollbar({wheelSpeed: 30, wheelPropagation: false, minScrollbarLength: 1});
+
 }
 
 
@@ -1880,9 +1907,14 @@ var drag_stretch =  d3.behavior.drag()
 						
 					});
 
+var smile_height_stretch, smile_width_stretch;
+
+
+
 var drag_stretch_smile =  d3.behavior.drag() 					
 					.on('dragstart', function() {	
 						d3.event.sourceEvent.stopPropagation();
+
 						current_smile = d3.select(this).attr("data-object_id");
 						d3.selectAll(".control_smile."+current_smile).classed("work", true);						
 						newx = parseFloat(d3.select(this).attr("cx"));
@@ -1894,17 +1926,13 @@ var drag_stretch_smile =  d3.behavior.drag()
 						var M = d3.mouse(svg_text.node());
 						prevx = M[0];
 						prevy = M[1];
+						smile_width_stretch =  parseFloat($("image."+current_smile).attr("width"));
+
+						smile_height_stretch =  parseFloat($("image."+current_smile).attr("height"));
 						
 					})
 					.on('drag', function() {
 						
-						smile_width =  parseFloat($(".image_smile."+current_smile).attr("width"));
-						smile_height =  parseFloat($(".image_smile."+current_smile).attr("height"));
-
-
-						var constant = smile_width/smile_height;
-
-
 						var dx = (newx+(d3.event.x-prevx));
 						var dy = (newy+(d3.event.y-prevy));
 						
@@ -1914,15 +1942,17 @@ var drag_stretch_smile =  d3.behavior.drag()
 						var deltay = dy - newy;
 							
 						if (
-							(parseInt(d3.select("image."+current_smile).attr("height"))-deltay)<10		
+							(parseInt(d3.select("image."+current_smile).attr("height"))+deltay)<10		
 						) return;
 
+						if (
+							(parseInt(d3.select("image."+current_smile).attr("height"))+deltax)<10		
+						) return;
+
+						d3.select(".image_smile."+current_smile).attr("width", smile_width_stretch + (deltax));
+						d3.select(".image_smile."+current_smile).attr("height", smile_height_stretch+ deltay);
 
 
-
-
-						//if ((parseInt(d3.select(".svg_text text").attr("data-font_size"))-deltay)<10) return;
-						
 						restart_depend_smile();
 					})
 					.on('dragend', function() {
@@ -1931,7 +1961,124 @@ var drag_stretch_smile =  d3.behavior.drag()
 
 
 function restart_depend_smile() {
+	/*
+		g_smiles.append("rect")
+		.classed("control_smile", true)
+		.classed("control_smile_main", true)
+		.attr("data-object_id", object_id)
+		.classed(object_id, true)
+		.classed("work", true)
+		.attr("id", "control_smile_rect")
+		.attr("width", text_width)
+		.attr("height", text_height)
+		.attr("x", config.devices[desctop.device_id].width/2-text_width/2)
+		.attr("y", config.devices[desctop.device_id].height/2-text_height/2)
+		.on("click", control_smile_click)
+		.call(drag_smile_rect);
 
+	g_smiles.append("rect")
+		.classed("control_smile", true)
+		.classed("control_smile_back", true)
+		.attr("data-object_id", object_id)
+		.classed(object_id, true)
+		.classed("work", true)
+		.attr("id", "control_smile_rect")
+		.attr("width", text_width-6)
+		.attr("height", text_height-6)
+		.attr("x", config.devices[desctop.device_id].width/2-text_width/2+3)
+		.attr("y", config.devices[desctop.device_id].height/2-text_height/2+3)
+		.on("click", control_smile_click)
+		.call(drag_smile_rect);
+	//	.on("dblclick", click_text);
+	
+	
+	
+	//Растяжение
+
+	
+	g_smiles.append("circle")
+		.classed("control_smile", true)
+		.attr("data-object_id", object_id)
+		.classed(object_id, true)
+		.classed("rotate_button",true)
+		.attr("data-rotate", 0)
+		.classed("work",true)
+		.attr("r", 12.5)
+		.call(rotate_smile)
+		.attr("cx", config.devices[desctop.device_id].width/2+text_width/2)
+		.attr("cy",  config.devices[desctop.device_id].height/2-text_height/2);
+	
+	g_smiles.append("circle")
+		.classed("control_smile", true)
+		.classed("stretch_button",true)
+		.attr("data-object_id", object_id)
+		.classed(object_id, true)
+		.call(drag_stretch_smile)
+		.classed("work",true)
+		.attr("r", 12.5)
+		.attr("cx", config.devices[desctop.device_id].width/2+text_width/2)
+		.attr("cy",  config.devices[desctop.device_id].height/2+text_height/2);
+	
+	
+	g_smiles.append("circle")
+		.classed("control_smile", true)
+		.attr("data-object_id", object_id)
+		.classed(object_id, true)
+		.classed("move_button",true)
+		.classed("work",true)
+		.attr("r", 12.5)
+		.call(drag_smile)
+		.attr("cx", config.devices[desctop.device_id].width/2-text_width/2)
+		.attr("cy",  config.devices[desctop.device_id].height/2-text_height/2);
+	
+	//REMOVE BUTTON
+	g_smiles.append("circle")
+		.classed("control_smile", true)
+		.classed("delete_button",true)
+		.attr("data-object_id", object_id)
+		.classed(object_id, true)
+		.on("click", delete_smile)
+		.classed("work",true)
+		.attr("r", 12.5)
+		.attr("cx", config.devices[desctop.device_id].width/2-text_width/2)
+		.attr("cy",  config.devices[desctop.device_id].height/2+text_height/2);
+	*/
+/*
+	var text_width = parseFloat($(".image_smile."+current_smile).attr("width"));
+	var text_height = parseFloat($(".image_smile."+current_smile).attr("height"));
+	
+
+	var text_x = parseFloat(d3.select("image."+current_smile).attr("x"));
+	var text_y =parseFloat(d3.select("image."+current_smile).attr("y"));
+	
+	svg_controls.select("rect.control_smile_main."+current_smile)
+		.attr("width", text_x-text_width)
+		.attr("height", text_y-text_height/2)
+		.attr("x", text_x)
+		.attr("y",text_y);
+		
+
+	svg_controls.select("rect.control_smile_back."+current_smile)
+		.attr("width", text_width-6)
+		.attr("height", text_height-6)
+		.attr("x", text_x+3)
+		.attr("y", text_y+3)
+
+	d3.select(".control_smile.stretch_button."+current_smile)
+		.attr("cx", text_x-text_width/2)
+		.attr("cy",  text_y-text_height/2-5);
+	
+	
+	d3.select(".control_smile.rotate_button."+current_smile)
+		.attr("cx", text_x+text_width/2)
+		.attr("cy",  text_y-text_height/2-5);
+	
+	
+	d3.select(".control_smile.move_button."+current_smile)
+		.attr("cx", text_x)
+		.attr("cy",  text_y-text_height/2-5);
+
+	*/
 }
 function restart_depend() {
 	
