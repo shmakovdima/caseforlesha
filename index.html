@@ -4,9 +4,10 @@
 <title></title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <link rel="stylesheet" type="text/css" href="css/jquery-ui.min.css">
+<link rel="stylesheet" type="text/css" href="css/sweet-alert.css">	
 <link rel="stylesheet" type="text/css" href="css/main.css">
 <link rel="stylesheet" type="text/css" href="css/perfect-scrollbar.css">
-<link rel="stylesheet" type="text/css" href="css/sweet-alert.css">	
+
 	
 <style>
 /*ШРИФТЫ тут вручную*/
@@ -14,32 +15,37 @@
 	font-family: Waltograph;
 	src: local("Waltograph"),
 	url(http://shmakovdima.ru/caseforlesha/fonts/Waltograph.ttf);
-}*/
+}
 @font-face {
 	font-family: snappy dna;
 	src: local("snappy dna"),
 	url(fonts/snappy_dna.ttf);
 }
+
 @font-face {
 	font-family: SimplyGlamorous;
 	src: local("SimplyGlamorous"),
 	url(fonts/SimplyGlamorous.ttf);
 }
+
 @font-face {
 	font-family: Remachine Script;
 	src: local("Remachine Script"),
 	url(fonts/Remachine_Script_Personal_Use.otf);
 }
+
 @font-face {
 	font-family: Mustang;
 	src: local("Mustang"),
 	url(fonts/Mustang.otf);
 }
+
 @font-face {
 	font-family: LeagueGothic-CondensedRegular;
 	src: local("LeagueGothic-CondensedRegular"),
 	url(fonts/LeagueGothic-CondensedRegular.otf);
 }
+
 @font-face {
 	font-family: Jellyka - Love and Passion;
 	src: local("Jellyka - Love and Passion"),
@@ -64,12 +70,18 @@
 	font-family: AGLettericaExtraCompressed Roman;
 	src: local("AGLettericaExtraCompressed Roman"),
 	url(fonts/AGLettericaExtraCompressed Roman.ttf);
-}
+}*/
 </style>
 
 </head>
 
 <body>
+<div class="alert_out_svg">
+	<div class="alert_out_svg-overlay">
+		
+	</div>
+	<span class="alert_out_svg-text">Осторожно!<br>Ваш текст выходит за границу печатной области чехла</span>
+</div>
 <div id="header">
 	<ul id="header-menu">
 		<li id="header-logo">
@@ -111,11 +123,8 @@
 	</div>
 	<div id="center">
 		<div id="center_in" >
-				<svg id="device" class="center_device_svg">
-
+				<svg  xmlns="http://www.w3.org/2000/svg"  id="device" class="center_device_svg">
 					<defs>
-					
-						
 						<pattern id="move" x="0" y="0" patternUnits="objectBoundingBox" height="25" width="25">
 						  <image x="0" y="0" xlink:href="img/buttons/move.png" height="25" width="25"></image>
 						</pattern>
@@ -136,8 +145,17 @@
 						<pattern id="rotate_active" x="0" y="0" patternUnits="objectBoundingBox" height="25" width="25">
 						  <image x="0" y="0" xlink:href="img/buttons/rotate_active.png" height="25" width="25"></image>
 						</pattern>
+						<pattern id="delete" x="0" y="0" patternUnits="objectBoundingBox" height="25" width="25">
+						  <image x="0" y="0" xlink:href="img/buttons/delete.png" height="25" width="25"></image>
+						</pattern>
+						<pattern id="delete_active" x="0" y="0" patternUnits="objectBoundingBox" height="25" width="25">
+						  <image x="0" y="0" xlink:href="img/buttons/delete_active.png" height="25" width="25"></image>
+						</pattern>
   					</defs>
-				</svg>			
+				</svg>
+				<svg xmlns="http://www.w3.org/2000/svg"  class="controls_device_svg">
+					
+				</svg>		
 
 			<div class="device_colors chech_colors" id="device_colors-2" style="display: none;">
 				<div class="device_colors-selected"></div>

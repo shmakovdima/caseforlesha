@@ -90,8 +90,6 @@ $(document).on("click", ".library-smile_row" , function() {
 });
 
 
-
-
 $(document).on("click", ".library-font_row" , function(){
 		set_font($(this).data('fontId'));
 });
@@ -150,9 +148,10 @@ function preparing_data(){
 	//svg_generation
 	
 	svg =d3.select(".center_device_svg");
+
+	svg_controls_svg = d3.select(".controls_device_svg");
 	svg_mask_container = svg.append("defs")
 							.classed("svg_mask_container", true);
-	
 	svg_fonts_container = svg.append("defs")
 							.classed("svg_fonts_container", true);
 	
@@ -171,9 +170,8 @@ function preparing_data(){
 			.classed("svg_mask_body", true);
 	svg_camera = svg.append("g")
 			.classed("svg_camera", true);
-	svg_controls = svg.append("g")
+	svg_controls  = svg_controls_svg .append("g")
 			.classed("svg_controls", true);
-	
 	
 	steps.push(cur_step);
 	object_id = randomHash(10);
@@ -221,15 +219,13 @@ function setup_font() {
 		if (config.fonts[value].default == true){               
 			desctop.font_id = config.fonts[value].name;
 			console.log("IРИФТ"+desctop.font_id);
-			html_text+='<div class="library-font_row library-font_row-selected"  data-font_url = "'+path+config.fonts[value].filename+'" data-font="'+config.fonts[value].name+'" style="font-family: '+config.fonts[value].name+';" data-font-id="'+value+'" id="library-font_row-'+value+'">'+config.fonts[value].name+'</div>';
+			html_text+='<div class="library-font_row library-font_row-selected"  data-font_url = "'+config.fonts[value].filename+'" data-font="'+config.fonts[value].name+'" style="font-family: '+config.fonts[value].name+';" data-font-id="'+value+'" id="library-font_row-'+value+'">'+config.fonts[value].name+'</div>';
 		}else{
-			html_text+='<div class="library-font_row"  data-font_url = "'+path+config.fonts[value].filename+'" data-font="'+config.fonts[value].name+'" style="font-family: '+config.fonts[value].name+';" data-font-id="'+value+'" id="library-font_row-'+value+'">'+config.fonts[value].name+'</div>';
+			html_text+='<div class="library-font_row"  data-font_url = "'+config.fonts[value].filename+'" data-font="'+config.fonts[value].name+'" style="font-family: '+config.fonts[value].name+';" data-font-id="'+value+'" id="library-font_row-'+value+'">'+config.fonts[value].name+'</div>';
 		}
 	
 		$(".library_font").append(html_text);
 
-		//svg_fonts_container
-		//	.append("")
 
 			/*	 <font-face font-family="Waltograph">
 							  <font-face-src>
@@ -455,7 +451,7 @@ function set_default_text(){
 								.style("text-anchor", "middle")
 								.style("alignment-baseline", "middle")
 								.style("font-family", desctop.font_id)
-								.style("font-size",config.desctop_font_size)
+								.style("font-size",config.desctop_font_size+"px")
 								.attr("x",config.devices[desctop.device_id].width/2)
 								.attr("y", config.devices[desctop.device_id].height/2);
 		
@@ -470,10 +466,21 @@ function set_default_text(){
 		.attr("height", text_height)
 		.attr("x", config.devices[desctop.device_id].width/2-text_width/2)
 		.attr("y", config.devices[desctop.device_id].height/2-text_height/2-5)
-		
 		.call(drag_rect)
 		.on("dblclick", click_text);
-	
+
+	svg_controls.append("rect")
+		.classed("control_text", true)
+		.classed("doubled_rect", true)
+		.classed("work", true)
+		.attr("id", "control_text_rect_appered")
+		.attr("width", text_width-6)
+		.attr("height", text_height-6)
+		.attr("x", config.devices[desctop.device_id].width/2-text_width/2+3)
+		.attr("y", config.devices[desctop.device_id].height/2-text_height/2-5+3)
+		.call(drag_rect)
+		.on("dblclick", click_text);
+
 	console.log(config.devices[desctop.device_id].width/2-text_width/2);
 	
 	//Растяжение
@@ -517,14 +524,9 @@ function set_smiles_image(url) {
 	object_id = randomHash(10);
 
 	svg_smiles.append("image")
-								.text(desctop.text)
 								.classed("image_smile", true)
 								.attr("data-object_id", object_id)
 								.classed(object_id, true)
-								.style("text-anchor", "middle")
-								.style("alignment-baseline", "middle")
-								.style("font-family", desctop.font_id)
-								.style("font-size",config.desctop_font_size)
 								.attr("width", 62)
 								.attr("height", 62)
 								.attr("x",config.devices[desctop.device_id].width/2-31)
@@ -533,8 +535,6 @@ function set_smiles_image(url) {
 	getImageBase64( url, function (data) {
 		d3.selectAll(".image_smile."+object_id)
       		.attr("xlink:href", "data:image/png;base64," + data); // replace link by data URI
-		
-		
 		$("#header-menu-item-6").addClass("header-menu-active");
 	});
 	
@@ -544,6 +544,7 @@ function set_smiles_image(url) {
 	
 	svg_controls.append("rect")
 		.classed("control_smile", true)
+		.classed("control_smile_main", true)
 		.attr("data-object_id", object_id)
 		.classed(object_id, true)
 		.classed("work", true)
@@ -552,11 +553,23 @@ function set_smiles_image(url) {
 		.attr("height", text_height)
 		.attr("x", config.devices[desctop.device_id].width/2-text_width/2)
 		.attr("y", config.devices[desctop.device_id].height/2-text_height/2)
-		
-		.call(drag_text);
+		.call(drag_smile_rect);
+
+	svg_controls.append("rect")
+		.classed("control_smile", true)
+		.classed("control_smile_back", true)
+		.attr("data-object_id", object_id)
+		.classed(object_id, true)
+		.classed("work", true)
+		.attr("id", "control_smile_rect")
+		.attr("width", text_width-6)
+		.attr("height", text_height-6)
+		.attr("x", config.devices[desctop.device_id].width/2-text_width/2+3)
+		.attr("y", config.devices[desctop.device_id].height/2-text_height/2+3)
+		.call(drag_smile_rect);
 	//	.on("dblclick", click_text);
 	
-	console.log(config.devices[desctop.device_id].width/2-text_width/2);
+	
 	
 	//Растяжение
 
@@ -569,7 +582,6 @@ function set_smiles_image(url) {
 		.attr("data-rotate", 0)
 		.classed("work",true)
 		.attr("r", 12.5)
-	//	.call(rotate_text)
 		.attr("cx", config.devices[desctop.device_id].width/2+text_width/2)
 		.attr("cy",  config.devices[desctop.device_id].height/2-text_height/2);
 	
@@ -599,10 +611,10 @@ function set_smiles_image(url) {
 	//REMOVE BUTTON
 	svg_controls.append("circle")
 		.classed("control_smile", true)
-		.classed("stretch_button",true)
+		.classed("delete_button",true)
 		.attr("data-object_id", object_id)
 		.classed(object_id, true)
-		.call(drag_stretch)
+		.on("click", delete_smile)
 		.classed("work",true)
 		.attr("r", 12.5)
 		.attr("cx", config.devices[desctop.device_id].width/2-text_width/2)
@@ -649,9 +661,9 @@ function change_step(obj) {
 			title: "Вы уверены, что хотите выбрать другой девайс?",   
 			text: "Макет нужно будет сделать заново",   
 			type: "warning",   showCancelButton: true,   
-			confirmButtonColor: "#DD6B55",   
-			confirmButtonText: "Да, очистить макет",   
-			cancelButtonText: "Отмена",   
+			confirmButtonColor: "#669AC4",   
+			confirmButtonText: "Да",   
+			cancelButtonText: "Нет",   
 			closeOnConfirm: true,   
 			closeOnCancel: true 
 		}, function(isConfirm){   
@@ -720,6 +732,9 @@ function change_step(obj) {
 
 
 function set_step(obj, id) {
+
+	if ($(".alert_out_svg").hasClass("active")) return;
+
 	$('.header-menu-selected').removeClass('header-menu-selected');
 		$(obj).addClass('header-menu-selected');
 		$('.right_content_block').hide();
@@ -954,11 +969,11 @@ function set_device(device_id) {
 	
 	var path = config.devices_desctop_path;
 	
-	svg
+	d3.selectAll("svg")
 		.attr("width", config.devices[desctop.device_id].width+"px")
 		.attr("height", config.devices[desctop.device_id].height+"px");
 	
-	svg
+	d3.selectAll("svg")
 		.selectAll("g")
 			.attr("width", config.devices[desctop.device_id].width+"px")
 			.attr("height", config.devices[desctop.device_id].height+"px");
@@ -966,9 +981,10 @@ function set_device(device_id) {
 		.append("image")
 			.attr("width", config.devices[desctop.device_id].width+"px")
 			.attr("height", config.devices[desctop.device_id].height+"px")
-			//.attr("xlink:href", path + config.devices[desctop.device_id].desctop_img)
+			.attr("xlink:href", path + config.devices[desctop.device_id].desctop_img)
 			.classed("device_image", true);
 	
+	svg_controls_svg.style("margin-top", "-"+config.devices[desctop.device_id].height+"px" )
 
 	//Магия в base64
 	getImageBase64(path + config.devices[desctop.device_id].desctop_img, function (data) {
@@ -1038,15 +1054,16 @@ function set_font(font_id) {
 			.attr("font-family", desctop.font_id)
 				  .append("font-face-src")
 				  	.append("font-face-uri")
-				  		.classed("this_is_font",true);
+				  		.classed("this_is_font",true)
+				  			.attr("xlink:href", url);
 
-
+				  				/*
 	
 		getImageBase64( url, function (data) {
 			d3.selectAll(".this_is_font")
 				.attr("xlink:href", "data:font/ttf;base64," + data); // replace link by data URI
 		});
-	
+		*/
 	
 		
 		$("#header-menu-item-6").addClass("header-menu-active");
@@ -1108,8 +1125,6 @@ function set_font_pattern(font_pattern_id) {
 	$('.library-pattern_row').removeClass('library-pattern_row-selected');
 	$('#library-pattern_row-' + font_pattern_id).addClass('library-pattern_row-selected');
 }
-
-
 
 
 
@@ -1192,7 +1207,6 @@ function save_image() {
 					ctx.drawImage( img, 0, 0 );
 		// Now is done
 			
-		
 		$.ajax({ 
 			type: "POST", 
 			url: location.href+"save_png.php",
@@ -1211,9 +1225,6 @@ function save_image() {
 		$("body").append(img);
 		$(".svg_controls").css("display","block");
 
-			
-			
-
 	};
 }
 
@@ -1228,6 +1239,8 @@ function get_angle(center, point){
 }
 
 var rotate, prev_rotate, center;
+
+
 var rotate_text =  d3.behavior.drag() 					
 					.on('dragstart', function() {	
 						d3.event.sourceEvent.stopPropagation();
@@ -1256,11 +1269,14 @@ var rotate_text =  d3.behavior.drag()
 						
 						prev_rotate = get_angle(center, point);
 						
-						console.log(prev_rotate);
+					
 					
 					})
 					.on('drag', function() {	
 						
+						svg_width = config.devices[desctop.device_id].width;
+						svg_height = config.devices[desctop.device_id].width;
+
 						var M = d3.mouse(svg_controls.node());
 
 						newx = parseFloat(d3.select(this).attr("cx"));
@@ -1280,22 +1296,17 @@ var rotate_text =  d3.behavior.drag()
 						
 						console.log(rotate);
 						
-					/*
-						//alert(icon_scale);
-				 		var width_element = d3.select(this).attr("width");
-				 		var height_element = d3.select(this).attr("height");
+						check_alert();
 
-				 		if ((d3.event.x<0)|| (d3.event.y<0) || (d3.event.x>(svg_width)) || (d3.event.y>(svg_height))) {
-							return;	 
-						}
-					
-					*/
-						
-					
+						console.log("rotate"+rotate);
 						
 						d3.selectAll(".svg_text text, .svg_controls .control_text")
                                          .attr("transform", "rotate("+rotate+","+center.x+","+center.y+")translate("+(-center.x*(icon_scale-1))+", "+(-center.y*(icon_scale-1))+")scale("+icon_scale+")"); 
 
+					
+
+						d3.select("#wood image")
+							 .attr("transform", "rotate("+(-rotate)+","+center.x+","+center.y+")translate("+(-center.x*(icon_scale-1))+", "+(-center.y*(icon_scale-1))+")scale("+icon_scale+")"); 
 					})
 					.on('dragend', function() {
 						
@@ -1307,6 +1318,8 @@ var rotate_text =  d3.behavior.drag()
 var icon_scale = 1;
 var rotate_x;
 var rotate_y;
+
+
 
 
 var drag_text =  d3.behavior.drag() 					
@@ -1359,21 +1372,10 @@ var drag_text =  d3.behavior.drag()
 							d3.select(this)
 								.attr("transform", "rotate("+rotate+","+rotate_x+","+rotate_y+")translate("+(-rotate_x*(icon_scale-1))+", "+(-rotate_y*(icon_scale-1))+")scale("+icon_scale+")"); 
  						});
+
+
 					
-						if (check_coords()===false) {
-							/*
-							rotate_x = parseFloat(d3.select(".svg_text text").attr("data-prevx_check"));
-							rotate_y = parseFloat(d3.select(".svg_text text").attr("data-prevy_check"));
-							
-							d3.select(".svg_text text")
-								.attr('x',rotate_x)
-								.attr('y',rotate_x)
-								.attr("transform", "rotate("+rotate+","+rotate_x+","+rotate_y+")translate("+(-rotate_x*(icon_scale-1))+", "+(-rotate_y*(icon_scale-1))+")scale("+icon_scale+")"); 
-							*/
-							console.log("ok");
-							return;
-							
-						}
+						check_alert();
 					
 						
 						d3.selectAll(".svg_text text")
@@ -1403,6 +1405,25 @@ var drag_text =  d3.behavior.drag()
 						
 					});
 
+current_smile = "";
+
+
+var drag_smile_rect =  d3.behavior.drag() 					
+					.on('dragstart', function() {
+						current_smile = d3.select(this).attr("data-object_id");
+						newx = parseFloat(d3.select(this).attr("x"));
+						newy = parseFloat(d3.select(this).attr("y"));
+						d3.event.sourceEvent.stopPropagation();
+						rotate = d3.select(".control_smile.rotate_button."+current_smile).attr("data-rotate");
+					})
+					.on('drag', function() {
+
+					})
+					.on('dragend', function() {
+
+					});
+
+
 var drag_rect =  d3.behavior.drag() 					
 					.on('dragstart', function() {	
 						d3.event.sourceEvent.stopPropagation();
@@ -1411,8 +1432,7 @@ var drag_rect =  d3.behavior.drag()
 							newx = parseFloat(d3.select(this).attr("x"));
 							newy = parseFloat(d3.select(this).attr("y"));
 						
-						
-						
+
 						d3.event.sourceEvent.stopPropagation();
 						rotate = d3.select(".control_text.rotate_button").attr("data-rotate");
 						
@@ -1430,6 +1450,7 @@ var drag_rect =  d3.behavior.drag()
 						var M = d3.mouse(svg_text.node());
 						prevx = M[0];
 						prevy = M[1];
+
 						
 					})
 					.on('drag', function() {
@@ -1456,7 +1477,8 @@ var drag_rect =  d3.behavior.drag()
 					
 						
 					
-						
+						check_alert();
+
 						d3.selectAll(".svg_text text")
 							 .attr("data-prevx_check", rotate_x)
 						 	 .attr("data-prevy_check", rotate_y)
@@ -1484,10 +1506,21 @@ var drag_rect =  d3.behavior.drag()
 						
 					});
 
+var delete_smile = function(){
+
+};
+
+function check_alert() {
+	if (check_coords()===false) {
+		$(".alert_out_svg").addClass("active");
+	}else{
+		$(".alert_out_svg").removeClass("active");
+	}
+}
+
 function check_coords(){
-	var coords = screenCoordsForRect(document.getElementById("control_text_rect"));	
-	console.log(coords);
-	
+	var coords = screenCoordsForRect(document.getElementById("control_text_rect_appered"));	
+
 	var coord_screen = document.getElementById("device").getBoundingClientRect();
 	
 	coords.nw.x-=coord_screen.left;
@@ -1501,17 +1534,18 @@ function check_coords(){
 	coords.sw.y-=coord_screen.top;
 	
 	
-	//console.log(coord_screen.left);
 	
-	if (((coords.nw.x-5)<0) || ((coords.nw.y-5)<0)) {console.log("nw");  return false;}
+	if (((coords.nw.x-0)<0) || ((coords.nw.y-0)<0)) {console.log("nw");  return false;}
 	
-	if (((coords.ne.x+5)>config.devices[desctop.device_id].width) || ((coords.nw.y-5)<0)) {console.log("ne");  return false;}
+	if (((coords.ne.x+0)>config.devices[desctop.device_id].width) || ((coords.nw.y-0)<0)) {console.log("ne");  return false;}
 	
-	if (((coords.sw.x-5)<0) || ((coords.sw.y+5)>config.devices[desctop.device_id].height)) {console.log("sw");  return false;}
+	if (((coords.sw.x-0)<0) || ((coords.sw.y+0)>config.devices[desctop.device_id].height)) {console.log("sw");  return false;}
 	
-	if (((coords.se.x+5)>config.devices[desctop.device_id].width) || ((coords.se.y+5)>config.devices[desctop.device_id].height)) {console.log("sw");  return false;}
+	if (((coords.se.x+0)>config.devices[desctop.device_id].width) || ((coords.se.y+0)>config.devices[desctop.device_id].height)) {console.log("sw");  return false;}
 	
 	return true;
+
+
 }
 
 var svg = document.querySelector('svg');
@@ -1533,6 +1567,10 @@ function screenCoordsForRect(rect){
   corners.sw = pt.matrixTransform(matrix);
   return corners;
 }
+
+
+
+
 
 var drag_stretch =  d3.behavior.drag() 					
 					.on('dragstart', function() {	
@@ -1560,12 +1598,11 @@ var drag_stretch =  d3.behavior.drag()
 							
 						var deltay = dy - newy;
 						
-						console.log(parseInt(d3.selectAll(".svg_text text")
-							.style("font-size")));
+				
 						
 						if ((parseInt(d3.select(".svg_text text").attr("data-font_size"))-deltay)<10) return;
 						d3.selectAll(".svg_text text")
-							.style("font-size", parseInt(d3.select(".svg_text text").attr("data-font_size"))-deltay);
+							.style("font-size", (parseInt(d3.select(".svg_text text").attr("data-font_size"))-deltay)+"px");
 						restart_depend();
 					})
 					.on('dragend', function() {
@@ -1580,15 +1617,21 @@ function restart_depend() {
 	var text_x = parseFloat(d3.select(".svg_text text").attr("x"));
 	var text_y =parseFloat(d3.select(".svg_text text").attr("y"));
 	
-	svg_controls.select("rect.control_text")
-	
+	svg_controls.select("rect#control_text_rect")
 		.attr("width", text_width)
 		.attr("height", text_height)
 		.attr("x", text_x-text_width/2)
 		.attr("y",text_y-text_height/2-5);
 		
-	
-	
+
+	svg_controls.select("rect.control_text.doubled_rect")
+		.attr("width", text_width-6)
+		.attr("height", text_height-6)
+		.attr("x", text_x-text_width/2+3)
+		.attr("y", text_y-text_height/2-5+3)
+
+
+
 	d3.select(".control_text.stretch_button")
 		.attr("cx", text_x-text_width/2)
 		.attr("cy",  text_y-text_height/2-5);
@@ -1602,6 +1645,8 @@ function restart_depend() {
 	d3.select(".control_text.move_button")
 		.attr("cx", text_x)
 		.attr("cy",  text_y-text_height/2-5);
+
+	check_alert();
 	
 }
 

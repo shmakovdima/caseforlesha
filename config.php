@@ -269,54 +269,54 @@ $config = array(
 					),
 				array(
 						"name" => "snappy dna",
-						"filename" => "snappy_dna.ttf",
+						"filename" => base64DataUri("fonts/"."snappy_dna.ttf"),
 						"default"=>true
 					),
 
 				array(
 						"name" => "SimplyGlamorous",
-						"filename" => "SimplyGlamorous.ttf"
+						"filename" => base64DataUri("fonts/"."SimplyGlamorous.ttf"),
 					),
 
-				array(
+			/*	array(
 						"name" => "Remachine Script",
-						"filename" => "Remachine_Script_Personal_Use.otf"
-					),
+						"filename" => base64DataUri("fonts/"."Remachine_Script_Personal_Use.otf")
+					),*/
 
 				array(
 						"name" => "Mustang",
-						"filename" => "Mustang.otf"
+						"filename" => base64DataUri("fonts/"."Mustang.otf")
 					),
 
 				array(
 						"name" => "LeagueGothic-CondensedRegular",
-						"filename" =>"LeagueGothic-CondensedRegular.otf"
+						"filename" =>base64DataUri("fonts/"."LeagueGothic-CondensedRegular.otf")
 					),
 
 				array(
 						"name" => "Jellyka - Love and Passion",
-						"filename" => "Jellyka_Love_and_Passion.ttf"
+						"filename" => base64DataUri("fonts/"."Jellyka_Love_and_Passion.ttf")
 					),
 
 				array(
 						"name" => "Feathergraphy Decoration",
-						"filename" => "Feathergraphy_Decoration.ttf"
+						"filename" => base64DataUri("fonts/"."Feathergraphy_Decoration.ttf")
 					),
 
-				 array(
+				 /*array(
 						"name" => "Bira",
-						"filename" => "Bira_PERSONAL_USE_ONLY.ttf"
-					),
+						"filename" => base64DataUri("fonts/"."Bira_PERSONAL_USE_ONLY.ttf")
+					), */
 
 				array(
 						"name" => "AngillaTattoo",
-						"filename" => "AngillaTattoo_PERSONAL_USE_ONLY.ttf"
+						"filename" => base64DataUri("fonts/"."AngillaTattoo_PERSONAL_USE_ONLY.ttf")
 					),
 
-				array(
+				 /*array(
 						"name" => "AGLettericaExtraCompressed Roman",
-						"filename" => "AGLettericaExtraCompressed Roman.ttf"
-					)
+						"filename" => base64DataUri("fonts/"."AGLettericaExtraCompressed Roman.ttf")
+					)*/
 		),
 		
 		"backgrounds" => array(
@@ -954,7 +954,6 @@ $config = array(
 	echo $result;
 
  
-
 
 
 ?>

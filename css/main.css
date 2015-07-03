@@ -1,4 +1,13 @@
 @font-face {
+	font-family: HelveticaNeueCyr;
+	src: local("HelveticaNeueCyr"),
+	url(../fonts/HelveticaNeueCyr-Roman.otf);
+}
+
+
+
+/*
+@font-face {
 	font-family: Waltograph;
 	src: local("Waltograph"),
 	url(http://shmakovdima.ru/caseforlesha/fonts/Waltograph.ttf);
@@ -55,7 +64,7 @@
 }
 
 
-
+*/
 
 
 
@@ -64,7 +73,7 @@ html, body {
 	margin: 0;
 	padding: 0;
 	color: #666;
-	font: 12px/1.4em Arial, Verdana, Helvetica, sans-serif;
+	font: 12px/1.4em HelveticaNeueCyr, Arial, Verdana, Helvetica, sans-serif;
 	height: 100%;
 }
 
@@ -189,9 +198,11 @@ body {
 	background: url('../img/icon-menu-5.png') right 3px no-repeat;
 }
 
-#header-menu > li:nth-child(7) span, #header-menu > li.header-menu-selected:nth-child(7) > span, #header-menu > li.header-menu-active:nth-child() > span {
+#header-menu > li:nth-child(7) span, #header-menu > li.header-menu-selected:nth-child(7) > span, #header-menu > li.header-menu-active:nth-child(7) > span {
 	background: url('../img/icon-menu-6.png') right 3px no-repeat;
 }
+
+
 
 #main {
 	position: absolute;
@@ -842,7 +853,21 @@ body {
 canvas {
 	
 }
+
 svg {
+	
+	position:relative;
+	margin: 0 auto;
+	display: block;
+}
+
+.controls_device_svg {
+	overflow: visible;
+	margin-top: -100%;
+}
+
+
+svg_center {
 	position:relative;
 	margin: 0 auto;
 	display: block;
@@ -864,8 +889,6 @@ svg {
 	stroke: #669AC4;
 	stroke-width: 1;
 	/*border: 1px double #669AC4;*/
-	
-
 }
 
 .svg_controls rect:hover {
@@ -876,7 +899,7 @@ svg {
 
 /*BUTTONS*/
 
-.stretch_button, .rotate_button, .move_button, .remove_button {
+.stretch_button, .rotate_button, .move_button, .delete_button {
 	display: none;
 	cursor:pointer;
 		transition: 400ms all easy;
@@ -891,8 +914,8 @@ svg {
 .move_button {
 	fill:url(#move);
 }
-.remove_button {
-	fill:url(#remove);
+.delete_button {
+	fill:url(#delete);
 }
 
 .stretch_button.work:hover {
@@ -904,11 +927,11 @@ svg {
 .move_button.work:hover {
 	fill:url(#move_active);
 }
-.remove_button.work:hover {
-	fill:url(#remove_active);
+.delete_button.work:hover {
+	fill:url(#delete_active);
 }
 
-.stretch_button.work,  .rotate_button.work, .move_button.work, .remove_button.work  {
+.stretch_button.work,  .rotate_button.work, .move_button.work, .delete_button.work  {
 	display: block;
 }
 
@@ -921,4 +944,96 @@ svg {
 	display:block;
 }
 */
+
+
+.alert_out_svg {
+	height: 0px;
+	opacity: 0;
+	z-index: 200;
+	width: 100%;
+	position: fixed;
+	transition: 300ms all  ease-out;
+}
+
+
+.alert_out_svg.active {
+	height: 120px;
+	opacity: 1;
+}
+
+
+
+.alert_out_svg-overlay {
+	position: absolute;
+	left: 0px; top: 0px;
+	width: 100%; height: 100%;
+	background: #ddd;
+	opacity: 0.9;
+}
+.alert_out_svg-text {
+	position: relative;
+	margin: 0 auto;
+	font-family: HelveticaNeueCyr;
+	color:  #da4437;
+	font-size: 20px; 
+	top: 50%;
+	margin-top: -30px;
+	line-height: 30px;
+	font-weight: normal;
+	display: block;
+	text-align: center;
+}
+
+.sa-icon.sa-warning {
+	display: none!important;
+}
+
+.sweet-overlay {
+	background: transparent;
+}
+
+.sweet-alert {
+	border-radius: 0px;
+	width: 740px;
+	  margin-left: -370px;
+}
+
+.sweet-alert button {
+	border-radius: 0px;
+}
+
+ 
+ .sweet-alert {
+  	/*background: #ddd;
+ 	opacity: 0.9;*/
+ 	font-family: HelveticaNeueCyr;
+ }
+
+ .sweet-alert button {
+ 	transition: 200ms all  ease-out;
+ 	width: 225px!important;
+ 	height: 76px!important;
+ 	color:  #ffffff;
+	font-size: 30px;
+	font-weight: 400;
+	text-align: center;
+ 	box-shadow: none!important;
+}
+
+
+ .sweet-alert button.cancel {
+ 	background: #669AC4;
+ }
+
+ .sweet-alert button:hover {
+ 	background: #295E93!important;
+ }
+
+ .sweet-alert h2 {
+ 	color:  #295e8c;
+	font-size: 22px;
+	
+ }
+
+ /*color:  #295e8c;*/
 
