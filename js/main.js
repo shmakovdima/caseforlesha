@@ -1882,12 +1882,14 @@ var drag_stretch =  d3.behavior.drag()
 
 var drag_stretch_smile =  d3.behavior.drag() 					
 					.on('dragstart', function() {	
-						d3.event.sourceEvent.stopPropagation();					
+						d3.event.sourceEvent.stopPropagation();
+						current_smile = d3.select(this).attr("data-object_id");
+						d3.selectAll(".control_smile."+current_smile).classed("work", true);						
 						newx = parseFloat(d3.select(this).attr("cx"));
 						newy = parseFloat(d3.select(this).attr("cy"));
 						d3.event.sourceEvent.stopPropagation();
-						//	.style("font-size", config.desctop_font_size)
-						rotate = d3.select(".control_text.rotate_button").attr("data-rotate");
+						
+						rotate = d3.select(".control_smile.rotate_button."+current_smile).attr("data-rotate");
 						
 						var M = d3.mouse(svg_text.node());
 						prevx = M[0];
@@ -1896,6 +1898,13 @@ var drag_stretch_smile =  d3.behavior.drag()
 					})
 					.on('drag', function() {
 						
+						smile_width =  parseFloat($(".image_smile."+current_smile).attr("width"));
+						smile_height =  parseFloat($(".image_smile."+current_smile).attr("height"));
+
+
+						var constant = smile_width/smile_height;
+
+
 						var dx = (newx+(d3.event.x-prevx));
 						var dy = (newy+(d3.event.y-prevy));
 						
@@ -1903,10 +1912,17 @@ var drag_stretch_smile =  d3.behavior.drag()
 						var deltax = dx - newx;
 							
 						var deltay = dy - newy;
+							
+						if (
+							(parseInt(d3.select("image."+current_smile).attr("height"))-deltay)<10		
+						) return;
+
+
+
+
+
+						//if ((parseInt(d3.select(".svg_text text").attr("data-font_size"))-deltay)<10) return;
 						
-						if ((parseInt(d3.select(".svg_text text").attr("data-font_size"))-deltay)<10) return;
-						d3.selectAll(".svg_text text")
-							.style("font-size", (parseInt(d3.select(".svg_text text").attr("data-font_size"))-deltay)+"px");
 						restart_depend_smile();
 					})
 					.on('dragend', function() {
