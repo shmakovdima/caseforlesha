@@ -1608,6 +1608,8 @@ var drag_text =  d3.behavior.drag()
 							 	 .attr("cy", parseFloat(d3.select(this).attr("data-prevy"))+deltay);	
 						});
 						
+						d3.select("#wood image")
+							 .attr("transform", "rotate("+(-rotate)+","+rotate_x+","+rotate_y+")translate("+(-rotate_x*(icon_scale-1))+", "+(-rotate_y*(icon_scale-1))+")scale("+icon_scale+")"); 
 						
 					})
 					.on('dragend', function() {
@@ -1785,7 +1787,8 @@ var drag_rect =  d3.behavior.drag()
 							 	 .attr("cy", parseFloat(d3.select(this).attr("data-prevy"))+deltay);	
 						});
 						
-						
+							d3.select("#wood image")
+							 .attr("transform", "rotate("+(-rotate)+","+rotate_x+","+rotate_y+")translate("+(-rotate_x*(icon_scale-1))+", "+(-rotate_y*(icon_scale-1))+")scale("+icon_scale+")"); 
 					})
 					.on('dragend', function() {
 						
