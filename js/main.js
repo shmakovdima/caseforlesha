@@ -1146,7 +1146,15 @@ function set_font_pattern(font_pattern_id) {
 	var url = d3.select('#library-pattern_row-' + font_pattern_id).attr("data-url");
 	
 	svg_mask_container.selectAll("pattern").remove();
+
+	rotate = parseFloat(d3.select(".control_text.rotate_button").attr("data-rotate"));
+	console.log(rotate);
 	
+	center = {
+							x: parseFloat(d3.select(".svg_text text").attr("x")),
+							y: parseFloat(d3.select(".svg_text text").attr("y"))
+	};
+
 	svg_mask_container.append("pattern")
 			.attr("id", "wood")
 			.attr("patternUnits", "userSpaceOnUse")
@@ -1158,8 +1166,8 @@ function set_font_pattern(font_pattern_id) {
 					.classed("pattern_image", true)
 					.attr("x", "0")
 					.attr("y", "0")
-					.attr("preserveAspectRatio", "xMidYMid slice");
-	
+					.attr("preserveAspectRatio", "xMidYMid slice")
+					.attr("transform", "rotate("+(-rotate)+","+center.x+","+center.y+")translate("+(-center.x*(icon_scale-1))+", "+(-center.y*(icon_scale-1))+")scale("+icon_scale+")"); 
 	
 	getImageBase64(url, function (data) {
 		d3.select(".pattern_image")
@@ -1422,7 +1430,7 @@ var rotate_text =  d3.behavior.drag()
 						d3.selectAll(".svg_text text, .svg_controls .control_text")
                                          .attr("transform", "rotate("+rotate+","+center.x+","+center.y+")translate("+(-center.x*(icon_scale-1))+", "+(-center.y*(icon_scale-1))+")scale("+icon_scale+")"); 
 
-					
+						d3.select(this).attr("data-rotate", rotate);
 
 						d3.select("#wood image")
 							 .attr("transform", "rotate("+(-rotate)+","+center.x+","+center.y+")translate("+(-center.x*(icon_scale-1))+", "+(-center.y*(icon_scale-1))+")scale("+icon_scale+")"); 
