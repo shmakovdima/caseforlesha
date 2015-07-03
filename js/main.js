@@ -1972,125 +1972,51 @@ var drag_stretch_smile =  d3.behavior.drag()
 
 
 function restart_depend_smile() {
-	/*
-		g_smiles.append("rect")
-		.classed("control_smile", true)
-		.classed("control_smile_main", true)
-		.attr("data-object_id", object_id)
-		.classed(object_id, true)
-		.classed("work", true)
-		.attr("id", "control_smile_rect")
+	
+
+}
+
+
+/*
+	var text_width = $(".svg_text text").width()+text_width_constant;
+	var text_height = $(".svg_text text").height()+text_height_constant;
+	
+	var text_x = parseFloat(d3.select(".svg_text text").attr("x"));
+	var text_y =parseFloat(d3.select(".svg_text text").attr("y"));
+	
+	svg_controls.select("rect#control_text_rect")
 		.attr("width", text_width)
 		.attr("height", text_height)
-		.attr("x", config.devices[desctop.device_id].width/2-text_width/2)
-		.attr("y", config.devices[desctop.device_id].height/2-text_height/2)
-		.on("click", control_smile_click)
-		.call(drag_smile_rect);
-
-	g_smiles.append("rect")
-		.classed("control_smile", true)
-		.classed("control_smile_back", true)
-		.attr("data-object_id", object_id)
-		.classed(object_id, true)
-		.classed("work", true)
-		.attr("id", "control_smile_rect")
-		.attr("width", text_width-6)
-		.attr("height", text_height-6)
-		.attr("x", config.devices[desctop.device_id].width/2-text_width/2+3)
-		.attr("y", config.devices[desctop.device_id].height/2-text_height/2+3)
-		.on("click", control_smile_click)
-		.call(drag_smile_rect);
-	//	.on("dblclick", click_text);
-	
-	
-	
-	//Растяжение
-
-	
-	g_smiles.append("circle")
-		.classed("control_smile", true)
-		.attr("data-object_id", object_id)
-		.classed(object_id, true)
-		.classed("rotate_button",true)
-		.attr("data-rotate", 0)
-		.classed("work",true)
-		.attr("r", 12.5)
-		.call(rotate_smile)
-		.attr("cx", config.devices[desctop.device_id].width/2+text_width/2)
-		.attr("cy",  config.devices[desctop.device_id].height/2-text_height/2);
-	
-	g_smiles.append("circle")
-		.classed("control_smile", true)
-		.classed("stretch_button",true)
-		.attr("data-object_id", object_id)
-		.classed(object_id, true)
-		.call(drag_stretch_smile)
-		.classed("work",true)
-		.attr("r", 12.5)
-		.attr("cx", config.devices[desctop.device_id].width/2+text_width/2)
-		.attr("cy",  config.devices[desctop.device_id].height/2+text_height/2);
-	
-	
-	g_smiles.append("circle")
-		.classed("control_smile", true)
-		.attr("data-object_id", object_id)
-		.classed(object_id, true)
-		.classed("move_button",true)
-		.classed("work",true)
-		.attr("r", 12.5)
-		.call(drag_smile)
-		.attr("cx", config.devices[desctop.device_id].width/2-text_width/2)
-		.attr("cy",  config.devices[desctop.device_id].height/2-text_height/2);
-	
-	//REMOVE BUTTON
-	g_smiles.append("circle")
-		.classed("control_smile", true)
-		.classed("delete_button",true)
-		.attr("data-object_id", object_id)
-		.classed(object_id, true)
-		.on("click", delete_smile)
-		.classed("work",true)
-		.attr("r", 12.5)
-		.attr("cx", config.devices[desctop.device_id].width/2-text_width/2)
-		.attr("cy",  config.devices[desctop.device_id].height/2+text_height/2);
-	*/
-/*
-	var text_width = parseFloat($(".image_smile."+current_smile).attr("width"));
-	var text_height = parseFloat($(".image_smile."+current_smile).attr("height"));
-	
-
-	var text_x = parseFloat(d3.select("image."+current_smile).attr("x"));
-	var text_y =parseFloat(d3.select("image."+current_smile).attr("y"));
-	
-	svg_controls.select("rect.control_smile_main."+current_smile)
-		.attr("width", text_x-text_width)
-		.attr("height", text_y-text_height/2)
-		.attr("x", text_x)
-		.attr("y",text_y);
+		.attr("x", text_x-text_width/2)
+		.attr("y",text_y-text_height/2-5);
 		
 
-	svg_controls.select("rect.control_smile_back."+current_smile)
+	svg_controls.select("rect.control_text.doubled_rect")
 		.attr("width", text_width-6)
 		.attr("height", text_height-6)
-		.attr("x", text_x+3)
-		.attr("y", text_y+3)
+		.attr("x", text_x-text_width/2+3)
+		.attr("y", text_y-text_height/2-5+3)
 
-	d3.select(".control_smile.stretch_button."+current_smile)
+
+
+	d3.select(".control_text.stretch_button")
 		.attr("cx", text_x-text_width/2)
 		.attr("cy",  text_y-text_height/2-5);
 	
 	
-	d3.select(".control_smile.rotate_button."+current_smile)
+	d3.select(".control_text.rotate_button")
 		.attr("cx", text_x+text_width/2)
 		.attr("cy",  text_y-text_height/2-5);
 	
 	
-	d3.select(".control_smile.move_button."+current_smile)
+	d3.select(".control_text.move_button")
 		.attr("cx", text_x)
 		.attr("cy",  text_y-text_height/2-5);
+*/
 
-	*/
-}
+
+
+
 function restart_depend() {
 	
 	var text_width = $(".svg_text text").width()+text_width_constant;
