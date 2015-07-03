@@ -536,6 +536,7 @@ function set_smiles_image(url) {
 								.classed("image_smile", true)
 								.attr("data-object_id", object_id)
 								.classed(object_id, true)
+								.attr("id",object_id )
 								.attr("width", 62)
 								.attr("height", 62)
 								.attr("x",config.devices[desctop.device_id].width/2-31)
@@ -603,7 +604,7 @@ function set_smiles_image(url) {
 		.classed("stretch_button",true)
 		.attr("data-object_id", object_id)
 		.classed(object_id, true)
-		.call(drag_stretch)
+		.call(drag_stretch_smile)
 		.classed("work",true)
 		.attr("r", 12.5)
 		.attr("cx", config.devices[desctop.device_id].width/2+text_width/2)
@@ -1264,7 +1265,7 @@ function get_angle(center, point){
 
 var rotate, prev_rotate, center;
 
-
+var smile_width, smile_height;
 
 var rotate_smile = d3.behavior.drag() 					
 					.on('dragstart', function() {
@@ -1276,6 +1277,11 @@ var rotate_smile = d3.behavior.drag()
 
 						newx = parseFloat(d3.select(this).attr("cx"));
 						newy = parseFloat(d3.select(this).attr("cy"));
+
+						smile_width =  parseFloat($(".image_smile."+current_smile).attr("width"));
+						smile_height =  parseFloat($(".image_smile."+current_smile).attr("height"));
+
+						console.log(smile_width);
 
 						rotate = d3.select(this).attr("data-rotate");
 						
@@ -1291,9 +1297,10 @@ var rotate_smile = d3.behavior.drag()
 						};
 
 						center = {
-							x: parseFloat(d3.select("image.image_smile."+current_smile).attr("x")),
-							y: parseFloat(d3.select("image.image_smile."+current_smile).attr("y"))
+							x: (parseFloat(d3.select("image.image_smile."+current_smile).attr("x")) + smile_width/2) ,
+							y: (parseFloat(d3.select("image.image_smile."+current_smile).attr("y")) + smile_height/2)
 						};
+
 
 						prev_rotate = get_angle(center, point);
 
@@ -1319,10 +1326,7 @@ var rotate_smile = d3.behavior.drag()
 						rotate = (rotate_angle-prev_rotate);
 							
 						d3.select(this).attr("data-rotate", rotate);
-			
-						
-
-						
+									
 						d3.selectAll("image.image_smile."+current_smile+", .svg_controls .control_smile."+current_smile)
                                          .attr("transform", "rotate("+rotate+","+center.x+","+center.y+")translate("+(-center.x*(icon_scale-1))+", "+(-center.y*(icon_scale-1))+")scale("+icon_scale+")"); 
 
@@ -1434,6 +1438,7 @@ var drag_smile =  d3.behavior.drag()
 						prevy = M[1];
 					})
 					.on('drag', function() {
+						var coord_x, coord_y;
 
 						var dx = (newx+(d3.event.x-prevx));
 						var dy = (newy+(d3.event.y-prevy));
@@ -1448,8 +1453,15 @@ var drag_smile =  d3.behavior.drag()
 								 .attr("x", parseFloat(d3.select(this).attr("data-prevx"))+deltax)
 							 	 .attr("y", parseFloat(d3.select(this).attr("data-prevy"))+deltay);
 								
-							rotate_x = parseFloat(d3.select(this).attr("data-prevx"))+deltax;
-							rotate_y = parseFloat(d3.select(this).attr("data-prevy"))+deltay;
+							coord_x = parseFloat(d3.select(this).attr("data-prevx"))+deltax;
+							coord_y = parseFloat(d3.select(this).attr("data-prevy"))+deltay;
+
+							
+							smile_width =  parseFloat($(".image_smile."+current_smile).attr("width"));
+							smile_height =  parseFloat($(".image_smile."+current_smile).attr("height"));
+
+							rotate_x=coord_x+smile_width/2;
+							rotate_y=coord_y+smile_height/2;
 							
 							d3.select(this)
 								.attr("transform", "rotate("+rotate+","+rotate_x+","+rotate_y+")translate("+(-rotate_x*(icon_scale-1))+", "+(-rotate_y*(icon_scale-1))+")scale("+icon_scale+")"); 
@@ -1457,8 +1469,8 @@ var drag_smile =  d3.behavior.drag()
 
 
 						d3.selectAll("image.image_smile."+current_smile)
-							 .attr("data-prevx_check", rotate_x)
-						 	 .attr("data-prevy_check", rotate_y)
+							 .attr("data-prevx_check", coord_x)
+						 	 .attr("data-prevy_check", coord_y)
 							 .attr("transform", "rotate("+rotate+","+rotate_x+","+rotate_y+")translate("+(-rotate_x*(icon_scale-1))+", "+(-rotate_y*(icon_scale-1))+")scale("+icon_scale+")"); ;
 
 						
@@ -1623,16 +1635,23 @@ var drag_smile_rect = d3.behavior.drag()
 								 .attr("x", parseFloat(d3.select(this).attr("data-prevx"))+deltax)
 							 	 .attr("y", parseFloat(d3.select(this).attr("data-prevy"))+deltay);
 								
-							rotate_x = parseFloat(d3.select(this).attr("data-prevx"))+deltax;
-							rotate_y = parseFloat(d3.select(this).attr("data-prevy"))+deltay;
+							coord_x = parseFloat(d3.select(this).attr("data-prevx"))+deltax;
+							coord_y = parseFloat(d3.select(this).attr("data-prevy"))+deltay;
+
+							
+							smile_width =  parseFloat($(".image_smile."+current_smile).attr("width"));
+							smile_height =  parseFloat($(".image_smile."+current_smile).attr("height"));
+
+							rotate_x=coord_x+smile_width/2;
+							rotate_y=coord_y+smile_height/2;
 							
 							d3.select(this)
 								.attr("transform", "rotate("+rotate+","+rotate_x+","+rotate_y+")translate("+(-rotate_x*(icon_scale-1))+", "+(-rotate_y*(icon_scale-1))+")scale("+icon_scale+")"); 
  						});
 
  						d3.selectAll(".svg_smiles image.image_smile."+current_smile)
-							 .attr("data-prevx_check", rotate_x)
-						 	 .attr("data-prevy_check", rotate_y)
+							 .attr("data-prevx_check", coord_x)
+						 	 .attr("data-prevy_check", coord_y)
 							 .attr("transform", "rotate("+rotate+","+rotate_x+","+rotate_y+")translate("+(-rotate_x*(icon_scale-1))+", "+(-rotate_y*(icon_scale-1))+")scale("+icon_scale+")"); ;
 
 						
@@ -1755,6 +1774,25 @@ function check_alert() {
 	}
 }
 
+
+function get_center(id){
+	var center = new Array();
+	var coords = screenCoordsForRect(document.getElementById(id));	
+	var coord_screen = document.getElementById("device").getBoundingClientRect();
+	coords.nw.x-=coord_screen.left;
+	coords.ne.x-=coord_screen.left;
+	coords.se.x-=coord_screen.left;
+	coords.sw.x-=coord_screen.left;
+	
+	coords.nw.y-=coord_screen.top;
+	coords.ne.y-=coord_screen.top;
+	coords.se.y-=coord_screen.top;
+	coords.sw.y-=coord_screen.top;
+
+
+	return 
+}
+
 function check_coords(){
 	var coords = screenCoordsForRect(document.getElementById("control_text_rect_appered"));	
 
@@ -1842,6 +1880,43 @@ var drag_stretch =  d3.behavior.drag()
 						
 					});
 
+var drag_stretch_smile =  d3.behavior.drag() 					
+					.on('dragstart', function() {	
+						d3.event.sourceEvent.stopPropagation();					
+						newx = parseFloat(d3.select(this).attr("cx"));
+						newy = parseFloat(d3.select(this).attr("cy"));
+						d3.event.sourceEvent.stopPropagation();
+						//	.style("font-size", config.desctop_font_size)
+						rotate = d3.select(".control_text.rotate_button").attr("data-rotate");
+						
+						var M = d3.mouse(svg_text.node());
+						prevx = M[0];
+						prevy = M[1];
+						
+					})
+					.on('drag', function() {
+						
+						var dx = (newx+(d3.event.x-prevx));
+						var dy = (newy+(d3.event.y-prevy));
+						
+						
+						var deltax = dx - newx;
+							
+						var deltay = dy - newy;
+						
+						if ((parseInt(d3.select(".svg_text text").attr("data-font_size"))-deltay)<10) return;
+						d3.selectAll(".svg_text text")
+							.style("font-size", (parseInt(d3.select(".svg_text text").attr("data-font_size"))-deltay)+"px");
+						restart_depend_smile();
+					})
+					.on('dragend', function() {
+						
+					});
+
+
+function restart_depend_smile() {
+
+}
 function restart_depend() {
 	
 	var text_width = $(".svg_text text").width()+text_width_constant;
