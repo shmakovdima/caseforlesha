@@ -21,11 +21,15 @@ function base64DataUri($sFile)
         case 'eot':
             $sMimeType = 'application/vnd.ms-fontobject';
         break;
+        case 'ttf': 
+             $sMimeType = 'application/font-ttf';
         
+        break;
         case 'otf':
-        case 'ttf':
+            $sMimeType='font/opentype';
+        break;
         case 'woff':
-            $sMimeType = 'application/octet-stream';
+            $sMimeType = 'application/font-woff';
         break;
         
         default:
@@ -33,7 +37,7 @@ function base64DataUri($sFile)
     }
 
     $sBase64 = base64_encode(file_get_contents($sFile));
-    return $sBase64;
+    return "data:".$sMimeType.";charset=utf-8;base64,".$sBase64;
 }
 
 

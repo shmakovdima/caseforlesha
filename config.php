@@ -1,15 +1,10 @@
 <?php
-/*
-ini_set('display_errors',1);
-error_reporting(E_ALL);
-*/
+
 mb_internal_encoding("UTF-8");
 
 include 'function.php';
 
 //тут папка фона
-$fontpath = "fonts/";
-
 
 $config = array(
 		//Конфигурации
@@ -19,7 +14,7 @@ $config = array(
 			"patterns_path_big"=>"img/patterns/big/",
 			"patterns_path_small"=>"img/patterns/small/",
 			"desctop_font_size"=>"50",
-			"desctop_font_path"=>$fontpath,
+			"desctop_font_path"=>"fonts/",
 			"desctop_bg_path"=>'img/backgrounds/',
 			"smiles_path"=>'img/smiles/',
 			"desctop_material_path"=>'img/materials/library/',
@@ -342,58 +337,58 @@ $config = array(
 			/*Только в */
 				array(
 						"name" => "Waltograph",
-						"filename" => base64DataUri("fonts/"."Waltograph.ttf")
+						"filename" => "Waltograph.ttf"
 					),
 				array(
 						"name" => "snappy dna",
-						"filename" => base64DataUri("fonts/"."snappy_dna.ttf"),
+						"filename" => "snappy_dna.ttf",
 						"default"=>true
 					),
 
 				array(
 						"name" => "SimplyGlamorous",
-						"filename" => base64DataUri("fonts/"."SimplyGlamorous.ttf"),
+						"filename" => "SimplyGlamorous.ttf"
 					),
 
-			/*	array(
+				array(
 						"name" => "Remachine Script",
-						"filename" => base64DataUri("fonts/"."Remachine_Script_Personal_Use.otf")
-					),*/
+						"filename" => "Remachine_Script_Personal_Use.otf"
+					),
 
 				array(
 						"name" => "Mustang",
-						"filename" => base64DataUri("fonts/"."Mustang.otf")
+						"filename" => "Mustang.otf"
 					),
 
 				array(
 						"name" => "LeagueGothic-CondensedRegular",
-						"filename" =>base64DataUri("fonts/"."LeagueGothic-CondensedRegular.otf")
+						"filename" =>"LeagueGothic-CondensedRegular.otf"
 					),
 
 				array(
 						"name" => "Jellyka - Love and Passion",
-						"filename" => base64DataUri("fonts/"."Jellyka_Love_and_Passion.ttf")
+						"filename" =>"Jellyka_Love_and_Passion.ttf"
 					),
 
 				array(
 						"name" => "Feathergraphy Decoration",
-						"filename" => base64DataUri("fonts/"."Feathergraphy_Decoration.ttf")
+						"filename" => "Feathergraphy_Decoration.ttf"
 					),
 
-				 /*array(
+				 array(
 						"name" => "Bira",
-						"filename" => base64DataUri("fonts/"."Bira_PERSONAL_USE_ONLY.ttf")
-					), */
+						"filename" => "Bira_PERSONAL_USE_ONLY.ttf"
+					), 
 
 				array(
 						"name" => "AngillaTattoo",
-						"filename" => base64DataUri("fonts/"."AngillaTattoo_PERSONAL_USE_ONLY.ttf")
+						"filename" => "AngillaTattoo_PERSONAL_USE_ONLY.ttf"
 					),
 
-				 /*array(
+				 array(
 						"name" => "AGLettericaExtraCompressed Roman",
-						"filename" => base64DataUri("fonts/"."AGLettericaExtraCompressed Roman.ttf")
-					)*/
+						"filename" => "AGLettericaExtraCompressed Roman.ttf"
+					)
 		),
 		
 		"backgrounds" => array(
@@ -996,15 +991,6 @@ $config = array(
 
 		)
 			
-
-	);
-
-
-	$result =  json_encode($config, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP | JSON_UNESCAPED_UNICODE);
-	
-	echo $result;
-
- 
-
+);
 
 ?>
