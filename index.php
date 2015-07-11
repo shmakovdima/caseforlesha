@@ -112,7 +112,6 @@
 				<svg  xmlns="http://www.w3.org/2000/svg"  id="device" class="center_device_svg">
 					<defs>
 						<style type="text/css">
-
 						<?php 
 							include 'filesetup.php';
 						?>

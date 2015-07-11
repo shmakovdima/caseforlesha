@@ -516,6 +516,13 @@ var fonts="";
 function prepare_devices(){
 
 
+
+
+
+
+
+
+
 	for(value in config.devices) {	
 		var html_text = "";
 		if (config.devices[value].default == true) {
