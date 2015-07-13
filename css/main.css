@@ -5,64 +5,6 @@
 }
 
 
-
-@font-face {
-	font-family: Waltograph;
-	src: local("Waltograph"),
-	url(http://shmakovdima.ru/caseforlesha/fonts/Waltograph.ttf);
-}
-@font-face {
-	font-family: snappy dna;
-	src: local("snappy dna"),
-	url(http://shmakovdima.ru/caseforlesha/fonts/snappy_dna.ttf);
-}
-@font-face {
-	font-family: SimplyGlamorous;
-	src: local("SimplyGlamorous"),
-	url(http://shmakovdima.ru/caseforlesha/fonts/SimplyGlamorous.ttf);
-}
-@font-face {
-	font-family: Remachine Script;
-	src: local("Remachine Script"),
-	url(http://shmakovdima.ru/caseforlesha//fonts/Remachine_Script_Personal_Use.otf);
-}
-@font-face {
-	font-family: Mustang;
-	src: local("Mustang"),
-	url(fonts/Mustang.otf);
-}
-@font-face {
-	font-family: LeagueGothic-CondensedRegular;
-	src: local("LeagueGothic-CondensedRegular"),
-	url(http://shmakovdima.ru/caseforlesha/fonts/LeagueGothic-CondensedRegular.otf);
-}
-@font-face {
-	font-family: Jellyka - Love and Passion;
-	src: local("Jellyka - Love and Passion"),
-	url(http://shmakovdima.ru/caseforlesha/fonts/Jellyka_Love_and_Passion.ttf);
-}
-@font-face {
-	font-family: Feathergraphy Decoration;
-	src: local("Feathergraphy Decoration"),
-	url(http://shmakovdima.ru/caseforlesha/fonts/Feathergraphy_Decoration.ttf);
-}
-@font-face {
-	font-family: Bira;
-	src: local("Bira"),
-	url(http://shmakovdima.ru/caseforlesha/fonts/Bira_PERSONAL_USE_ONLY.ttf);
-}
-@font-face {
-	font-family: AngillaTattoo;
-	src: local("AngillaTattoo"),
-	url(http://shmakovdima.ru/caseforlesha/fonts/AngillaTattoo_PERSONAL_USE_ONLY.ttf);
-}
-@font-face {
-	font-family: AGLettericaExtraCompressed Roman;
-	src: local("AGLettericaExtraCompressed Roman"),
-	url(http://shmakovdima.ru/caseforlesha/fonts/AGLettericaExtraCompressed Roman.ttf);
-}
-
-
 #info_block-5, #info_block-6, #info_block-3, #info_block-2, #info_block-4 {
 	display: none;
 }

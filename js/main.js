@@ -87,18 +87,17 @@ $(document).on("click", ".ok_write" , function(){
 $(document).on("click",".yes_save", function(){
 	$(".alert_block").removeClass("active");
 	save_image();
-})
+});
 
 $(document).on("click",".no_button", function(){
 	$(".alert_block").removeClass("active");
-})
+});
 
 $(document).on("click",".yes_device", function(){
 	$(".alert_block").removeClass("active");
 	remove_setting(); 
 	set_step($("#header-menu-item-1"), 1);
-
-})
+});
 
 $(document).on("click","#change_color_but", function(){
 	click_text();
@@ -1213,16 +1212,17 @@ function set_font_pattern(font_pattern_id) {
 	svg_mask_container.append("pattern")
 			.attr("id", "wood")
 			.attr("patternUnits", "userSpaceOnUse")
-			.attr("width", "100%")
-			.attr("height", "100%")
+			.attr("width", config.devices[desctop.device_id].width)
+			.attr("height",config.devices[desctop.device_id].height)
+			.attr("patternTransform", "rotate("+(-rotate)+","+center.x+","+center.y+")translate("+(-center.x*(icon_scale-1))+", "+(-center.y*(icon_scale-1))+")scale("+icon_scale+")") 
 				.append("image")
-					.attr("width", "100%")
-					.attr("height", "100%")
+					.attr("width", config.devices[desctop.device_id].width)
+					.attr("height", config.devices[desctop.device_id].height)
 					.classed("pattern_image", true)
-					.attr("x", "0")
-					.attr("y", "0")
-					.attr("preserveAspectRatio", "xMidYMid slice")
-					.attr("transform", "rotate("+(-rotate)+","+center.x+","+center.y+")translate("+(-center.x*(icon_scale-1))+", "+(-center.y*(icon_scale-1))+")scale("+icon_scale+")"); 
+					.attr("x",0)
+					.attr("y", 0)
+					.attr("preserveAspectRatio", "xMidYMid slice");
+					
 	
 	getImageBase64(url, function (data) {
 		d3.select(".pattern_image")
@@ -1280,18 +1280,6 @@ function save_image() {
 	
 	$(".svg_controls").css("display","none");
 	
-	
-	
-	/*
-	html2canvas(document.body, {
-		  onrendered: function(canvas) {
-			document.body.appendChild(canvas);
-		  }
-	});
-	*/
-	
-	
-			
 	
 	
 	
@@ -1489,8 +1477,8 @@ var rotate_text =  d3.behavior.drag()
 
 						d3.select(this).attr("data-rotate", rotate);
 					
-						d3.select("#wood image")
-							 .attr("transform", "rotate("+(-rotate)+","+center.x+","+center.y+")translate("+(-center.x*(icon_scale-1))+", "+(-center.y*(icon_scale-1))+")scale("+icon_scale+")"); 
+						d3.select("#wood")
+							   .attr("patternTransform", "rotate("+(-rotate)+","+center.x+","+center.y+")translate("+(-center.x*(icon_scale-1))+", "+(-center.y*(icon_scale-1))+")scale("+icon_scale+")"); 
 					
 					})
 					.on('dragend', function() {
@@ -1666,9 +1654,9 @@ var drag_text =  d3.behavior.drag()
 							 	 .attr("cy", parseFloat(d3.select(this).attr("data-prevy"))+deltay);	
 						});
 						
-						d3.select("#wood image")
-							 .attr("transform", "rotate("+(-rotate)+","+rotate_x+","+rotate_y+")translate("+(-rotate_x*(icon_scale-1))+", "+(-rotate_y*(icon_scale-1))+")scale("+icon_scale+")"); 
-						
+					d3.select("#wood")
+							   .attr("patternTransform", "rotate("+(-rotate)+","+rotate_x+","+rotate_y+")translate("+(-rotate_x*(icon_scale-1))+", "+(-rotate_y*(icon_scale-1))+")scale("+icon_scale+")"); 
+					
 					})
 					.on('dragend', function() {
 						
@@ -1845,8 +1833,8 @@ var drag_rect =  d3.behavior.drag()
 							 	 .attr("cy", parseFloat(d3.select(this).attr("data-prevy"))+deltay);	
 						});
 						
-							d3.select("#wood image")
-							 .attr("transform", "rotate("+(-rotate)+","+rotate_x+","+rotate_y+")translate("+(-rotate_x*(icon_scale-1))+", "+(-rotate_y*(icon_scale-1))+")scale("+icon_scale+")"); 
+						d3.select("#wood")
+							   .attr("patternTransform", "rotate("+(-rotate)+","+rotate_x+","+rotate_y+")translate("+(-rotate_x*(icon_scale-1))+", "+(-rotate_y*(icon_scale-1))+")scale("+icon_scale+")"); 
 					})
 					.on('dragend', function() {
 						
@@ -2007,6 +1995,12 @@ var drag_stretch_smile =  d3.behavior.drag()
 						var dx = (newx+(d3.event.x-prevx));
 						var dy = (newy+(d3.event.y-prevy));
 						
+
+						var width_smile = parseFloat(d3.select(".image_smile."+current_smile).attr("width"));
+						var height_smile = parseFloat(d3.select(".image_smile."+current_smile).attr("height"));
+
+
+						var constant = height_smile/width_smile; 
 						
 						var deltax = dx - newx;
 							
@@ -2021,7 +2015,7 @@ var drag_stretch_smile =  d3.behavior.drag()
 						) return;
 
 						d3.select(".image_smile."+current_smile).attr("width", smile_width_stretch + deltax);
-						d3.select(".image_smile."+current_smile).attr("height", smile_height_stretch+ deltay);
+						d3.select(".image_smile."+current_smile).attr("height", smile_height_stretch + deltax*constant);
 
 
 						restart_depend_smile();
